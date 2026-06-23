@@ -56,7 +56,10 @@ export default async function handler(request, response) {
   // Add OPENAI_API_KEY in Vercel under Project Settings -> Environment Variables.
   // Keep it server-side only. Do not create or expose a VITE_OPENAI_API_KEY value.
   // Optional: set OPENAI_MODEL in Vercel if PNS later chooses a different approved model.
-  const apiKey = process.env.OPENAI_API_KEY;
+  const apiKey = (process.env.OPENAI_API_KEY || "")
+    .trim()
+    .replace(/^OPENAI_API_KEY=/, "")
+    .replace(/^['"]|['"]$/g, "");
   if (!apiKey) {
     return sendJson(response, 500, {
       error: "ASCEND Assistant is not configured yet. Please add OPENAI_API_KEY in the Vercel environment variables."
@@ -100,9 +103,33 @@ export default async function handler(request, response) {
     const payload = await openAiResponse.json().catch(() => ({}));
 
     if (!openAiResponse.ok) {
-      console.error("ASCEND Assistant OpenAI error", payload);
+      console.error("ASCEND Assistant OpenAI error", {
+        status: openAiResponse.status,
+        type: payload.error?.type,
+        code: payload.error?.code,
+        message: payload.error?.message
+      });
+
+      if (openAiResponse.status === 401) {
+        return sendJson(response, 401, {
+          error: "ASCEND Assistant is connected, but the OpenAI key is invalid or was pasted incorrectly. Please update OPENAI_API_KEY in Vercel and redeploy."
+        });
+      }
+
+      if (openAiResponse.status === 429) {
+        return sendJson(response, 429, {
+          error: "ASCEND Assistant is connected, but the OpenAI account has a quota, billing, or rate-limit issue. Please check billing and usage in the OpenAI platform."
+        });
+      }
+
+      if (openAiResponse.status === 404 || payload.error?.code === "model_not_found") {
+        return sendJson(response, 502, {
+          error: `ASCEND Assistant is connected, but the selected OpenAI model is unavailable for this key. In Vercel, set OPENAI_MODEL to a model your account can use, or remove OPENAI_MODEL to use ${OPENAI_MODEL}.`
+        });
+      }
+
       return sendJson(response, 502, {
-        error: "ASCEND Assistant could not respond right now. Please try again shortly or contact PNS directly."
+        error: "ASCEND Assistant reached OpenAI, but OpenAI rejected the request. Please check the Vercel function logs for the exact provider message."
       });
     }
 
