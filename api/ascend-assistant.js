@@ -112,24 +112,24 @@ export default async function handler(request, response) {
 
       if (openAiResponse.status === 401) {
         return sendJson(response, 401, {
-          error: "ASCEND Assistant is connected, but the OpenAI key is invalid or was pasted incorrectly. Please update OPENAI_API_KEY in Vercel and redeploy."
+          error: "ASCEND Assistant is temporarily unavailable. Please try again later or contact PNS directly."
         });
       }
 
       if (openAiResponse.status === 429) {
         return sendJson(response, 429, {
-          error: "ASCEND Assistant is connected, but the OpenAI account has a quota, billing, or rate-limit issue. Please check billing and usage in the OpenAI platform."
+          error: "ASCEND Assistant is temporarily unavailable. Please try again later or contact PNS directly."
         });
       }
 
       if (openAiResponse.status === 404 || payload.error?.code === "model_not_found") {
         return sendJson(response, 502, {
-          error: `ASCEND Assistant is connected, but the selected OpenAI model is unavailable for this key. In Vercel, set OPENAI_MODEL to a model your account can use, or remove OPENAI_MODEL to use ${OPENAI_MODEL}.`
+          error: "ASCEND Assistant is temporarily unavailable. Please try again later or contact PNS directly."
         });
       }
 
       return sendJson(response, 502, {
-        error: "ASCEND Assistant reached OpenAI, but OpenAI rejected the request. Please check the Vercel function logs for the exact provider message."
+        error: "ASCEND Assistant is temporarily unavailable. Please try again later or contact PNS directly."
       });
     }
 

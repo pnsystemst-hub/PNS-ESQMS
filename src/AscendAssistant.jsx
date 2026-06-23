@@ -67,7 +67,8 @@ export default function AscendAssistant() {
 
       setMessages((current) => [...current, { role: "assistant", content: data.reply }]);
     } catch (caughtError) {
-      setError(caughtError.message || "Something went wrong. Please try again, or contact PNS directly.");
+      console.error("ASCEND Assistant request failed", caughtError);
+      setError("ASCEND Assistant is temporarily unavailable. Please try again later or contact PNS directly.");
     } finally {
       setIsLoading(false);
       requestAnimationFrame(() => inputRef.current?.focus());

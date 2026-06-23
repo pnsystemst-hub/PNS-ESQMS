@@ -90,6 +90,54 @@ function Card({ icon: Icon, title, children }) {
   );
 }
 
+
+function LearningDataScene({ title, label, detail, variant }) {
+  const isTracking = variant === "tracking";
+  const isIntervention = variant === "intervention";
+  const bars = isTracking ? [46, 58, 64, 72, 81] : isIntervention ? [72, 64, 77, 84, 88] : [38, 52, 61, 73, 79];
+
+  return (
+    <motion.article
+      variants={fadeUp}
+      className="group overflow-hidden rounded-3xl border border-sky-100 bg-white shadow-[0_22px_70px_rgba(6,26,53,0.1)] transition duration-300 hover:-translate-y-2 hover:border-amber-200 hover:shadow-[0_32px_90px_rgba(14,165,233,0.18)]"
+    >
+      <div className="relative min-h-[230px] bg-gradient-to-br from-pns-navy via-pns-blue to-pns-bright p-5 text-white">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_16%,rgba(255,255,255,0.26),transparent_10rem),radial-gradient(circle_at_82%_78%,rgba(201,149,39,0.28),transparent_13rem)]" />
+        <div className="relative grid h-full gap-4">
+          <div className="flex items-center justify-between">
+            <span className="rounded-full bg-white/14 px-3 py-1 text-xs font-black uppercase tracking-[0.14em] text-blue-50">{label}</span>
+            <span className="rounded-full bg-amber-300/90 px-3 py-1 text-xs font-black text-pns-navy">Sample view</span>
+          </div>
+
+          <div className="grid gap-4 rounded-2xl border border-white/14 bg-white/10 p-4 backdrop-blur">
+            <div className="flex items-center gap-3">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-pns-blue shadow-glow">
+                {isTracking ? <LineChart size={25} /> : isIntervention ? <Target size={25} /> : <GraduationCap size={25} />}
+              </div>
+              <div>
+                <p className="text-sm font-bold text-blue-100">{isTracking ? "Weekly movement" : isIntervention ? "Support focus" : "Learning picture"}</p>
+                <h3 className="text-2xl font-black">{title}</h3>
+              </div>
+            </div>
+
+            <div className="flex h-24 items-end gap-2 rounded-2xl bg-white/10 p-3">
+              {bars.map((height, index) => (
+                <div key={height + index} className="flex flex-1 flex-col items-center gap-2">
+                  <div className="w-full rounded-t-xl bg-gradient-to-t from-amber-300 to-white shadow-[0_0_18px_rgba(255,255,255,0.22)]" style={{ height: `${height}%` }} />
+                  <span className="text-[10px] font-black text-blue-100">W{index + 1}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="p-6">
+        <p className="text-sm font-black uppercase tracking-[0.16em] text-pns-blue">What this represents</p>
+        <p className="mt-3 leading-7 text-slate-600">{detail}</p>
+      </div>
+    </motion.article>
+  );
+}
 function App() {
   const [activeBriefing, setActiveBriefing] = useState("schools");
   const [menuOpen, setMenuOpen] = useState(false);
@@ -332,6 +380,31 @@ function App() {
                   </span>
                 </motion.a>
               ))}
+            </motion.div>
+          </div>
+        </MotionSection>
+
+        <MotionSection id="visual-proof" className="bg-white py-24">
+          <div className="section-shell">
+            <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+              <SectionHeader eyebrow="What PNS makes easier to see" title="Learning support should not feel invisible.">
+                Visitors get a clearer picture of the kind of visibility PNS is building: learner support, weekly movement, and focused intervention without exposing protected system logic.
+              </SectionHeader>
+              <div className="rounded-3xl border border-sky-100 bg-gradient-to-br from-sky-50 via-white to-amber-50 p-6 shadow-[0_22px_70px_rgba(6,26,53,0.08)]">
+                <div className="grid grid-cols-3 gap-3 text-center">
+                  {["Learning", "Evidence", "Progress"].map((item) => (
+                    <div key={item} className="rounded-2xl bg-white p-4 shadow-sm">
+                      <p className="text-2xl font-black text-pns-blue">{item === "Learning" ? "01" : item === "Evidence" ? "02" : "03"}</p>
+                      <p className="mt-1 text-xs font-extrabold uppercase tracking-[0.12em] text-slate-500">{item}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <motion.div variants={stagger} className="mt-10 grid gap-6 lg:grid-cols-3">
+              <LearningDataScene title="Learner support" label="Guided learning" variant="learning" detail="A public-facing picture of how support can become more structured, easier to explain, and easier to follow." />
+              <LearningDataScene title="Progress tracking" label="Data movement" variant="tracking" detail="A visual cue for weekly trends, support signals, and the movement from raw activity toward useful progress conversations." />
+              <LearningDataScene title="Intervention focus" label="Next steps" variant="intervention" detail="A simple representation of how concerns can move into planned action, review, and continuous improvement." />
             </motion.div>
           </div>
         </MotionSection>
