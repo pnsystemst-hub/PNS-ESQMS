@@ -286,8 +286,8 @@ function App() {
       <main id="top">
         <section className="relative min-h-screen bg-pns-navy pt-28 text-white">
           <div className="absolute inset-0">
-            <img src="/images/classroom-data-hero.png" alt="Learners in a classroom with education data visuals" className="h-full w-full object-cover opacity-[0.46]" />
-            <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(6,26,53,.98)_0%,rgba(6,26,53,.86)_48%,rgba(6,26,53,.52)_100%)]" />
+            <img src="/images/classroom-learning-scene.png" alt="Learners in a classroom with education data visuals" className="h-full w-full object-cover opacity-[0.68]" />
+            <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(6,26,53,.9)_0%,rgba(6,26,53,.74)_48%,rgba(6,26,53,.38)_100%)]" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_28%,rgba(22,135,255,.24),transparent_28rem),radial-gradient(circle_at_18%_80%,rgba(201,149,39,.18),transparent_24rem)]" />
           </div>
 
@@ -459,8 +459,8 @@ function App() {
 
         <MotionSection id="model" className="relative overflow-hidden bg-pns-navy py-24 text-white">
           <div className="absolute inset-0">
-            <img src="/images/classroom-data-hero.png" alt="" className="h-full w-full object-cover opacity-[0.28]" />
-            <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(6,26,53,0.96),rgba(6,26,53,0.84),rgba(11,63,120,0.72))]" />
+            <img src="/images/analytics-dashboard-scene.png" alt="" className="h-full w-full object-cover opacity-[0.48]" />
+            <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(6,26,53,0.84),rgba(6,26,53,0.66),rgba(11,63,120,0.46))]" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(201,149,39,0.24),transparent_24rem)]" />
           </div>
           <div className="section-shell relative">
@@ -526,24 +526,29 @@ function App() {
             <SectionHeader eyebrow="For Parents" title="Confidence through visible, structured progress.">
               Parents need clarity. ASCEND presents learning support in a way that feels understandable, measured, and action-oriented.
             </SectionHeader>
-            <div className="rounded-lg bg-gradient-to-br from-pns-navy to-pns-blue p-7 text-white shadow-premium">
-              <h3 className="text-3xl font-black">Parent-facing value</h3>
-              <div className="mt-7 grid gap-4">
-                {["Progress visibility", "Confidence in the process", "Measurable improvement", "Structured communication"].map((item) => (
-                  <div key={item} className="flex items-center gap-3">
-                    <CheckCircle2 className="text-blue-200" size={21} />
-                    <span className="font-bold">{item}</span>
-                  </div>
-                ))}
+            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-pns-navy to-pns-blue p-7 text-white shadow-premium">
+              <div className="absolute inset-0">
+                <img src="/images/analytics-dashboard-scene.png" alt="" className="h-full w-full object-cover opacity-[0.32]" />
+                <div className="absolute inset-0 bg-gradient-to-br from-pns-navy/86 to-pns-blue/70" />
+              </div>
+              <div className="relative">
+                <h3 className="text-3xl font-black">Parent-facing value</h3>
+                <div className="mt-7 grid gap-4">
+                  {["Progress visibility", "Confidence in the process", "Measurable improvement", "Structured communication"].map((item) => (
+                    <div key={item} className="flex items-center gap-3">
+                      <CheckCircle2 className="text-blue-200" size={21} />
+                      <span className="font-bold">{item}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </MotionSection>
-
         <MotionSection id="partners" className="relative overflow-hidden bg-pns-navy py-24 text-white">
           <div className="absolute inset-0">
-            <img src="/images/classroom-data-hero.png" alt="" className="h-full w-full object-cover opacity-[0.24]" />
-            <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(6,26,53,0.98),rgba(6,26,53,0.86),rgba(11,63,120,0.72))]" />
+            <img src="/images/classroom-data-hero.png" alt="" className="h-full w-full object-cover opacity-[0.42]" />
+            <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(6,26,53,0.9),rgba(6,26,53,0.72),rgba(11,63,120,0.48))]" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_30%,rgba(22,135,255,0.2),transparent_22rem)]" />
           </div>
           <div className="section-shell relative grid gap-12 lg:grid-cols-[.95fr_1.05fr]">
@@ -623,8 +628,8 @@ function App() {
 
         <MotionSection id="contact" className="relative overflow-hidden bg-gradient-to-br from-pns-navy via-pns-blue to-[#0f2745] py-24 text-white">
           <div className="absolute inset-0">
-            <img src="/images/classroom-data-hero.png" alt="" className="h-full w-full object-cover opacity-[0.22]" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(22,135,255,0.24),transparent_24rem),linear-gradient(110deg,rgba(6,26,53,0.95),rgba(11,63,120,0.84))]" />
+            <img src="/images/classroom-learning-scene.png" alt="" className="h-full w-full object-cover opacity-[0.38]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(22,135,255,0.24),transparent_24rem),linear-gradient(110deg,rgba(6,26,53,0.86),rgba(11,63,120,0.62))]" />
           </div>
           <div className="section-shell relative grid items-center gap-10 lg:grid-cols-[1.1fr_.9fr]">
             <div>
