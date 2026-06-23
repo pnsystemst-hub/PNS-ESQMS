@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import AscendAssistant from "./AscendAssistant";
 import {
   ArrowRight,
   BarChart3,
@@ -560,6 +561,8 @@ function App() {
           </div>
         </MotionSection>
       </main>
+
+      <AscendAssistant />
 
       <footer className="bg-white py-8">
         <div className="section-shell flex flex-col gap-5 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
