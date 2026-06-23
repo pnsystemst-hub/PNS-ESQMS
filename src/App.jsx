@@ -75,9 +75,9 @@ function Card({ icon: Icon, title, children }) {
   return (
     <motion.article
       variants={fadeUp}
-      className="group rounded-lg border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-premium"
+      className="group rounded-2xl border border-sky-100 bg-gradient-to-br from-white via-white to-sky-50/70 p-6 shadow-[0_18px_50px_rgba(6,26,53,0.08)] transition duration-300 hover:-translate-y-2 hover:border-amber-200 hover:shadow-[0_28px_80px_rgba(14,165,233,0.18)]"
     >
-      <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 text-pns-blue transition group-hover:bg-pns-blue group-hover:text-white">
+      <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-sky-50 to-amber-50 text-pns-blue shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] transition group-hover:scale-105 group-hover:from-pns-blue group-hover:to-pns-bright group-hover:text-white">
         <Icon size={24} strokeWidth={2.1} />
       </div>
       <h3 className="text-xl font-extrabold leading-snug text-pns-ink">{title}</h3>
@@ -268,7 +268,7 @@ function App() {
             </SectionHeader>
             <motion.div variants={stagger} className="mt-12 grid gap-5 lg:grid-cols-3">
               {strategicLayers.map(([label, title, body]) => (
-                <motion.article key={label} variants={fadeUp} className="rounded-lg border border-slate-200 bg-white p-6 shadow-premium">
+                <motion.article key={label} variants={fadeUp} className="rounded-2xl border border-sky-100 bg-gradient-to-br from-white via-white to-amber-50/60 p-6 shadow-premium transition duration-300 hover:-translate-y-2 hover:border-amber-200">
                   <p className="text-sm font-black uppercase tracking-[0.18em] text-pns-blue">{label}</p>
                   <h3 className="mt-3 text-2xl font-black leading-tight text-pns-ink">{title}</h3>
                   <p className="mt-4 leading-7 text-slate-600">{body}</p>
@@ -286,7 +286,7 @@ function App() {
               </SectionHeader>
               <div className="mt-8 grid gap-3 sm:grid-cols-2">
                 {ascendCapabilities.map(([title, detail]) => (
-                  <div key={title} className="flex gap-3 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+                  <div key={title} className="flex gap-3 rounded-2xl border border-sky-100 bg-gradient-to-br from-white to-sky-50/70 p-4 shadow-[0_14px_34px_rgba(6,26,53,0.07)] transition duration-300 hover:-translate-y-1 hover:border-amber-200 hover:shadow-[0_22px_60px_rgba(14,165,233,0.16)]">
                     <Sparkles className="mt-1 shrink-0 text-pns-gold" size={20} />
                     <div>
                       <span className="font-black text-slate-800">{title}</span>
@@ -296,8 +296,16 @@ function App() {
                 ))}
               </div>
             </div>
-            <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-premium">
-              <img src="/logos/ascend-logo.png" alt="ASCEND Education Intelligence Platform" className="w-full rounded-md object-contain" />
+            <div className="rounded-2xl border border-amber-200 bg-gradient-to-br from-white via-sky-50 to-white p-5 shadow-premium transition duration-300 hover:-translate-y-2 hover:shadow-[0_28px_80px_rgba(14,165,233,0.24)]">
+              <a
+                href="https://ascend-dashboard-rho.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open the ASCEND dashboard app in a new tab"
+                className="block rounded-xl transition duration-300 hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-amber-300/50"
+              >
+                <img src="/logos/ascend-login-logo.svg" alt="ASCEND Education Intelligence Platform" className="w-full rounded-md object-contain" />
+              </a>
             </div>
           </div>
         </MotionSection>
@@ -339,7 +347,7 @@ function App() {
             </SectionHeader>
             <div className="grid gap-4 sm:grid-cols-2">
               {["Educational intelligence systems", "Institutional support systems", "Analytics-driven intervention", "Scalable support frameworks"].map((item) => (
-                <div key={item} className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+                <div key={item} className="rounded-2xl border border-sky-100 bg-gradient-to-br from-white to-sky-50/70 p-5 shadow-[0_14px_40px_rgba(6,26,53,0.08)] transition duration-300 hover:-translate-y-2 hover:border-amber-200">
                   <BarChart3 className="mb-4 text-pns-blue" size={24} />
                   <h3 className="text-xl font-black text-pns-ink">{item}</h3>
                   <p className="mt-3 leading-7 text-slate-600">Built through disciplined implementation, measurable evidence, and continuous improvement.</p>
@@ -423,7 +431,7 @@ function App() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.25 }}
-                className="min-h-[330px] rounded-lg border border-slate-200 bg-white p-8 shadow-premium"
+                className="min-h-[330px] rounded-2xl border border-sky-100 bg-gradient-to-br from-white via-white to-sky-50/80 p-8 shadow-premium"
               >
                 <h3 className="text-3xl font-black leading-tight text-pns-ink md:text-5xl">{briefings[activeBriefing].title}</h3>
                 <p className="mt-5 text-lg leading-8 text-slate-600">{briefings[activeBriefing].body}</p>
@@ -441,7 +449,7 @@ function App() {
         </MotionSection>
 
         <MotionSection id="ip" className="bg-white py-24">
-          <div className="section-shell rounded-lg border border-slate-200 bg-slate-50 p-8 shadow-premium md:p-12">
+          <div className="section-shell rounded-2xl border border-sky-100 bg-gradient-to-br from-white via-slate-50 to-amber-50/50 p-8 shadow-premium md:p-12">
             <div className="grid gap-10 lg:grid-cols-[.7fr_1.3fr]">
               <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-pns-navy text-white">
                 <LockKeyhole size={30} />

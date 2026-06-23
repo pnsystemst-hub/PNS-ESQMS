@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 420" role="img" aria-labelledby="title desc">
+  <title id="title">ASCEND Education Intelligence Platform</title>
+  <desc id="desc">ASCEND Education Intelligence Platform logo with professional blue and amber accents, powered by Pragma Novus Systems.</desc>
+  <defs>
+    <linearGradient id="ascendBlue" x1="86" y1="318" x2="332" y2="90" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#06163a"/>
+      <stop offset="0.52" stop-color="#075ca8"/>
+      <stop offset="1" stop-color="#1ea7ff"/>
+    </linearGradient>
+    <linearGradient id="ascendBlueSoft" x1="48" y1="104" x2="364" y2="350" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#082458"/>
+      <stop offset="0.54" stop-color="#0572c9"/>
+      <stop offset="1" stop-color="#38bdf8"/>
+    </linearGradient>
+    <linearGradient id="ascendAmber" x1="292" y1="82" x2="376" y2="166" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fbbf24"/>
+      <stop offset="1" stop-color="#f97316"/>
+    </linearGradient>
+    <linearGradient id="wordGradient" x1="456" y1="124" x2="1122" y2="226" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#06163a"/>
+      <stop offset="0.64" stop-color="#0b2f66"/>
+      <stop offset="1" stop-color="#075985"/>
+    </linearGradient>
+    <filter id="markShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#0f2d56" flood-opacity="0.2"/>
+    </filter>
+    <filter id="amberGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <g filter="url(#markShadow)">
+    <path d="M68 305 C128 286 206 298 254 343 C304 298 382 286 442 305 L466 352 C388 337 318 352 254 386 C190 352 118 337 42 352 Z" fill="url(#ascendBlueSoft)"/>
+    <path d="M62 329 C138 315 206 330 254 369 C304 330 374 315 450 329" fill="none" stroke="#38bdf8" stroke-width="8" stroke-linecap="round" opacity="0.95"/>
+
+    <path d="M90 285 L252 72 L412 285 L352 285 L288 196 L214 285 Z" fill="url(#ascendBlue)"/>
+    <path d="M288 196 L412 285 L352 285 L252 126 Z" fill="#0ea5e9" opacity="0.58"/>
+    <path d="M214 285 L252 230 L286 285 Z" fill="#06163a" opacity="0.78"/>
+
+    <rect x="200" y="253" width="23" height="32" rx="2" fill="#075ca8"/>
+    <rect x="236" y="234" width="23" height="51" rx="2" fill="#0d86d8"/>
+    <rect x="272" y="214" width="23" height="71" rx="2" fill="#20a8ff"/>
+    <rect x="308" y="189" width="23" height="96" rx="2" fill="url(#ascendAmber)"/>
+
+    <path d="M88 232 C54 124 154 42 284 91" fill="none" stroke="url(#ascendBlueSoft)" stroke-width="13" stroke-linecap="round"/>
+    <path d="M346 126 C385 172 392 226 366 272" fill="none" stroke="url(#ascendBlueSoft)" stroke-width="13" stroke-linecap="round"/>
+    <path d="M346 58 L360 94 L398 108 L362 122 L348 160 L334 122 L296 108 L332 94 Z" fill="url(#ascendAmber)" stroke="#92400e" stroke-width="2" filter="url(#amberGlow)"/>
+  </g>
+
+  <line x1="510" y1="62" x2="510" y2="358" stroke="#0f2d56" stroke-width="3" opacity="0.72"/>
+
+  <g>
+    <text x="566" y="154" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="104" font-weight="900" letter-spacing="13" fill="url(#wordGradient)">ASCEND</text>
+    <text x="571" y="213" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="700" letter-spacing="2" fill="#0f2d56">Education Intelligence Platform</text>
+    <line x1="571" y1="236" x2="1156" y2="236" stroke="#0f2d56" stroke-width="3" opacity="0.9"/>
+    <line x1="571" y1="247" x2="775" y2="247" stroke="url(#ascendAmber)" stroke-width="5" stroke-linecap="round"/>
+    <text x="571" y="293" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="800" letter-spacing="1.1" fill="#102142">Where Learning Becomes Measurable</text>
+  </g>
+
+  <g transform="translate(571 321)">
+    <path d="M36 0 L68 18 L68 54 L36 72 L4 54 L4 18 Z" fill="#06163a"/>
+    <path d="M58 12 L68 18 L68 54 L58 60 Z" fill="url(#ascendAmber)" opacity="0.95"/>
+    <text x="15" y="48" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="34" font-weight="900" fill="#ffffff">PN</text>
+    <text x="94" y="46" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="500" fill="#0f172a">Powered by Pragma Novus Systems</text>
+  </g>
+</svg>
