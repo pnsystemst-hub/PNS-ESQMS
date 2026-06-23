@@ -286,7 +286,7 @@ function App() {
       <main id="top">
         <section className="relative min-h-screen bg-pns-navy pt-28 text-white">
           <div className="absolute inset-0">
-            <img src="/pns-hero.png" alt="" className="h-full w-full object-cover opacity-[0.3]" />
+            <img src="/images/classroom-data-hero.png" alt="Learners in a classroom with education data visuals" className="h-full w-full object-cover opacity-[0.46]" />
             <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(6,26,53,.98)_0%,rgba(6,26,53,.86)_48%,rgba(6,26,53,.52)_100%)]" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_28%,rgba(22,135,255,.24),transparent_28rem),radial-gradient(circle_at_18%_80%,rgba(201,149,39,.18),transparent_24rem)]" />
           </div>
@@ -457,8 +457,13 @@ function App() {
           </div>
         </MotionSection>
 
-        <MotionSection id="model" className="bg-pns-navy py-24 text-white">
-          <div className="section-shell">
+        <MotionSection id="model" className="relative overflow-hidden bg-pns-navy py-24 text-white">
+          <div className="absolute inset-0">
+            <img src="/images/classroom-data-hero.png" alt="" className="h-full w-full object-cover opacity-[0.28]" />
+            <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(6,26,53,0.96),rgba(6,26,53,0.84),rgba(11,63,120,0.72))]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(201,149,39,0.24),transparent_24rem)]" />
+          </div>
+          <div className="section-shell relative">
             <SectionHeader eyebrow="Our Model" title="Our operating logic moves from evidence to accountable improvement." inverse>
               PNS follows a disciplined sequence that keeps each engagement focused on diagnostics, intervention, visibility, and continuous improvement.
             </SectionHeader>
@@ -535,8 +540,13 @@ function App() {
           </div>
         </MotionSection>
 
-        <MotionSection id="partners" className="bg-pns-navy py-24 text-white">
-          <div className="section-shell grid gap-12 lg:grid-cols-[.95fr_1.05fr]">
+        <MotionSection id="partners" className="relative overflow-hidden bg-pns-navy py-24 text-white">
+          <div className="absolute inset-0">
+            <img src="/images/classroom-data-hero.png" alt="" className="h-full w-full object-cover opacity-[0.24]" />
+            <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(6,26,53,0.98),rgba(6,26,53,0.86),rgba(11,63,120,0.72))]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_30%,rgba(22,135,255,0.2),transparent_22rem)]" />
+          </div>
+          <div className="section-shell relative grid gap-12 lg:grid-cols-[.95fr_1.05fr]">
             <SectionHeader eyebrow="Sponsors & Partners" title="Scalable, measurable, accountable, and partnership-ready." inverse>
               PNS is positioned for schools, sponsors, entities, and education partners who need evidence of implementation value without exposure to protected system internals.
             </SectionHeader>
@@ -611,8 +621,12 @@ function App() {
           </div>
         </MotionSection>
 
-        <MotionSection id="contact" className="bg-gradient-to-br from-pns-navy via-pns-blue to-[#0f2745] py-24 text-white">
-          <div className="section-shell grid items-center gap-10 lg:grid-cols-[1.1fr_.9fr]">
+        <MotionSection id="contact" className="relative overflow-hidden bg-gradient-to-br from-pns-navy via-pns-blue to-[#0f2745] py-24 text-white">
+          <div className="absolute inset-0">
+            <img src="/images/classroom-data-hero.png" alt="" className="h-full w-full object-cover opacity-[0.22]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(22,135,255,0.24),transparent_24rem),linear-gradient(110deg,rgba(6,26,53,0.95),rgba(11,63,120,0.84))]" />
+          </div>
+          <div className="section-shell relative grid items-center gap-10 lg:grid-cols-[1.1fr_.9fr]">
             <div>
               <p className="mb-3 text-sm font-extrabold uppercase tracking-[0.18em] text-blue-200">Contact PNS</p>
               <h2 className="text-4xl font-black leading-tight md:text-6xl">Start a serious education support conversation.</h2>
