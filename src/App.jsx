@@ -27,7 +27,7 @@ const email = "pnsystems.t@gmail.com";
 const phoneDisplay = "(+27) 67 033 6452";
 const phoneHref = "tel:+27670336452";
 const mailHref = `mailto:${email}`;
-const ascendUrl = "https://ascend-dashboard-rho.vercel.app/";
+const ascendUrl = "https://ascend.pragmansystems.co.za/";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
