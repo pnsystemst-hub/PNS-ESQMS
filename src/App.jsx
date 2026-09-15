@@ -23,10 +23,10 @@ import {
   X
 } from "lucide-react";
 
-const email = "pnsystems.t@gmail.com";
+const email = "lloyd@pragmansystems.co.za";
 const phoneDisplay = "(+27) 67 033 6452";
 const phoneHref = "tel:+27670336452";
-const mailHref = `mailto:${email}`;
+const mailHref = `mailto:${email}?subject=${encodeURIComponent("PNS website enquiry")}`;
 const ascendUrl = "https://ascend.pragmansystems.co.za/";
 
 const fadeUp = {
@@ -258,7 +258,7 @@ function App() {
             <a href={ascendUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-pns-bright to-pns-blue px-4 text-sm font-extrabold text-white shadow-glow transition hover:-translate-y-0.5">
               Open ASCEND <ArrowRight size={16} />
             </a>
-            <a href={mailHref} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-sky-100 bg-white px-4 text-sm font-extrabold text-pns-navy shadow-sm transition hover:-translate-y-0.5 hover:border-amber-200">
+            <a href="#contact" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-sky-100 bg-white px-4 text-sm font-extrabold text-pns-navy shadow-sm transition hover:-translate-y-0.5 hover:border-amber-200">
               <Mail size={17} /> Contact
             </a>
           </div>
