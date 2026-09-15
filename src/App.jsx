@@ -23,7 +23,7 @@ import {
   X
 } from "lucide-react";
 
-const email = "lloyd@pragmansystems.co.za";
+const email = "frontdesk@pragmansystems.co.za";
 const phoneDisplay = "(+27) 67 033 6452";
 const phoneHref = "tel:+27670336452";
 const mailHref = `mailto:${email}?subject=${encodeURIComponent("PNS website enquiry")}`;
@@ -141,13 +141,13 @@ function LearningDataScene({ title, label, detail, variant }) {
 function App() {
   const [activeBriefing, setActiveBriefing] = useState("schools");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
   const navItems = [
     ["What we do", "#about"],
     ["ASCEND", "#ascend"],
     ["For you", "#pathways"],
     ["Schools", "#schools"],
-    ["Partners", "#partners"],
-    ["Contact", "#contact"]
+    ["Partners", "#partners"]
   ];
   const heroCards = [
     ["Need learner support?", "Start with ASCEND", "#ascend"],
@@ -258,9 +258,21 @@ function App() {
             <a href={ascendUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-pns-bright to-pns-blue px-4 text-sm font-extrabold text-white shadow-glow transition hover:-translate-y-0.5">
               Open ASCEND <ArrowRight size={16} />
             </a>
-            <a href="#contact" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-sky-100 bg-white px-4 text-sm font-extrabold text-pns-navy shadow-sm transition hover:-translate-y-0.5 hover:border-amber-200">
-              <Mail size={17} /> Contact
-            </a>
+            <div className="relative">
+              <button type="button" onClick={() => setContactOpen((open) => !open)} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-sky-100 bg-white px-4 text-sm font-extrabold text-pns-navy shadow-sm transition hover:-translate-y-0.5 hover:border-amber-200" aria-expanded={contactOpen} aria-haspopup="menu">
+                <Mail size={17} /> Contact
+              </button>
+              {contactOpen ? (
+                <div className="absolute right-0 top-[calc(100%+0.65rem)] z-50 grid min-w-72 gap-2 rounded-2xl border border-sky-100 bg-white p-3 shadow-premium" role="menu">
+                  <a href={mailHref} onClick={() => setContactOpen(false)} className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-extrabold text-pns-navy transition hover:bg-sky-50" role="menuitem">
+                    <Mail size={18} className="text-pns-blue" /> Email PNS
+                  </a>
+                  <a href={phoneHref} onClick={() => setContactOpen(false)} className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-extrabold text-pns-navy transition hover:bg-amber-50" role="menuitem">
+                    <Phone size={18} className="text-pns-gold" /> Call {phoneDisplay}
+                  </a>
+                </div>
+              ) : null}
+            </div>
           </div>
 
           <button type="button" onClick={() => setMenuOpen((open) => !open)} className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-sky-100 bg-white text-pns-navy shadow-sm lg:hidden" aria-label="Open website menu" aria-expanded={menuOpen}>
@@ -275,6 +287,20 @@ function App() {
                   {label}
                 </a>
               ))}
+              <button type="button" onClick={() => setContactOpen((open) => !open)} className="flex min-h-12 items-center justify-between rounded-2xl px-4 text-left font-extrabold text-pns-navy transition hover:bg-sky-50" aria-expanded={contactOpen}>
+                <span className="inline-flex items-center gap-3"><Mail size={18} /> Contact PNS</span>
+                <span aria-hidden="true">{contactOpen ? "-" : "+"}</span>
+              </button>
+              {contactOpen ? (
+                <div className="grid gap-2 rounded-2xl border border-sky-100 bg-sky-50/70 p-2">
+                  <a href={mailHref} onClick={() => { setContactOpen(false); setMenuOpen(false); }} className="flex min-h-11 items-center gap-3 rounded-xl bg-white px-3 font-extrabold text-pns-navy">
+                    <Mail size={18} className="text-pns-blue" /> Email PNS
+                  </a>
+                  <a href={phoneHref} onClick={() => { setContactOpen(false); setMenuOpen(false); }} className="flex min-h-11 items-center gap-3 rounded-xl bg-white px-3 font-extrabold text-pns-navy">
+                    <Phone size={18} className="text-pns-gold" /> Call {phoneDisplay}
+                  </a>
+                </div>
+              ) : null}
               <a href={ascendUrl} target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} className="mt-2 inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-pns-bright to-pns-blue px-4 font-extrabold text-white shadow-glow">
                 Open ASCEND Platform <ArrowRight size={17} />
               </a>
