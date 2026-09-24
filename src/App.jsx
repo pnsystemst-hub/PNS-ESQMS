@@ -4,6 +4,7 @@ import AscendAssistant from "./AscendAssistant";
 import {
   ArrowRight,
   BarChart3,
+  BriefcaseBusiness,
   Building2,
   CheckCircle2,
   Eye,
@@ -28,6 +29,7 @@ const phoneDisplay = "(+27) 67 033 6452";
 const phoneHref = "tel:+27670336452";
 const mailHref = `mailto:${email}?subject=${encodeURIComponent("PNS website enquiry")}`;
 const ascendUrl = "https://ascend.pragmansystems.co.za/";
+const nextstepUrl = "https://nextstep.pragmansystems.co.za/";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -144,26 +146,28 @@ function App() {
   const [contactOpen, setContactOpen] = useState(false);
   const navItems = [
     ["What we do", "#about"],
+    ["System fields", "#system-fields"],
     ["ASCEND", "#ascend"],
-    ["For you", "#pathways"],
+    ["NEXTSTEP", "#nextstep"],
     ["Schools", "#schools"],
     ["Partners", "#partners"]
   ];
   const heroCards = [
-    ["Need learner support?", "Start with ASCEND", "#ascend"],
-    ["Run a school or programme?", "See how PNS supports improvement", "#schools"],
-    ["Want measurable impact?", "Explore partner pathways", "#partners"]
+    ["Educational support quality management", "Explore ASCEND and PNS-ESQMS", "#ascend"],
+    ["Post-education employment readiness", "Explore NEXTSTEP", "#nextstep"],
+    ["Broader intelligent systems work", "See how PNS thinks", "#system-fields"]
   ];
   const pathwayCards = [
     ["If you are a parent", "click here to ask about support for your child", ascendUrl, true],
     ["If you are a learner", "click here to reach the ASCEND platform", ascendUrl, true],
+    ["If you are moving after education", "click here to take NEXTSTEP", nextstepUrl, true],
     ["If you are a school", "click here to explore collaboration with PNS", "#schools", false],
     ["If you are a sponsor or partner", "click here to discuss measurable impact", "#partners", false]
   ];
   const strategicLayers = [
-    ["PNS", "The team building the bigger education-support vision", "Pragma Novus Systems designs tools and structures that help learning support become more visible and accountable."],
-    ["PNS-ESQMS", "The quality spine behind the work", "A careful support framework for diagnostics, intervention, monitoring, and continuous improvement."],
-    ["ASCEND", "Where the work becomes visible", "The live platform where learners, parents, educators, and partners can see support activity and progress take shape."]
+    ["PNS", "The systems company behind the work", "Pragma Novus Systems designs intelligent support systems for education, employment readiness, monitoring, reporting and structured human progress."],
+    ["ASCEND", "Educational support quality management", "The blue education-support field: PNS-ESQMS, diagnostics, intervention visibility, learner monitoring and school-facing improvement conversations."],
+    ["NEXTSTEP", "Post-education employment readiness", "The green post-education field: safer opportunity discovery, evidence-ready applications, document readiness and guided movement after education."]
   ];
 
   const ascendCapabilities = [
@@ -183,12 +187,13 @@ function App() {
   ];
 
   const solutions = [
-    ["Educational intelligence systems", Eye, "Evidence-led visibility that helps stakeholders understand progress, priorities, and support activity."],
+    ["Educational support quality management systems", Eye, "ASCEND and PNS-ESQMS make learner support, diagnostics, intervention, visibility and reporting easier to manage responsibly."],
+    ["Post-education employment readiness systems", BriefcaseBusiness, "NEXTSTEP supports people after school, college, university or training as they move into work, income, experience and credible career records."],
     ["Structured intervention pathways", GraduationCap, "A disciplined implementation layer that moves teams from diagnosis to coordinated action."],
     ["Analytics-driven monitoring", LineChart, "Review-friendly progress views that strengthen accountability without overwhelming users."],
-    ["Parent and learner reporting", FileText, "Clear communication that builds confidence and keeps improvement conversations practical."],
-    ["Institutional support systems", Building2, "Support architecture that strengthens existing school and organisational systems rather than replacing them."],
-    ["Scalable implementation frameworks", MonitorCheck, "Programme support for education initiatives that must be visible, repeatable, measurable, and reportable."]
+    ["Parent, learner and candidate reporting", FileText, "Clear communication that builds confidence and keeps improvement or readiness conversations practical."],
+    ["Institutional support systems", Building2, "Support architecture that strengthens existing organisations rather than replacing leadership, educators or programme teams."],
+    ["Scalable implementation frameworks", MonitorCheck, "Programme support for initiatives that must be visible, repeatable, measurable and reportable."]
   ];
 
   const briefings = {
@@ -242,7 +247,7 @@ function App() {
             <img src="/logos/pns-esqms-logo.png" alt="PNS-ESQMS Pragma Novus Systems" className="h-14 w-14 rounded-xl bg-white object-contain shadow-sm" />
             <div className="hidden leading-tight sm:block">
               <strong className="block text-sm font-black text-pns-navy">Pragma Novus Systems</strong>
-              <span className="text-xs font-semibold text-slate-500">Measurable learner support, built with care</span>
+              <span className="text-xs font-semibold text-slate-500">Practical intelligent systems, built with care</span>
             </div>
           </a>
 
@@ -257,6 +262,9 @@ function App() {
           <div className="hidden items-center gap-2 lg:flex">
             <a href={ascendUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-pns-bright to-pns-blue px-4 text-sm font-extrabold text-white shadow-glow transition hover:-translate-y-0.5">
               Open ASCEND <ArrowRight size={16} />
+            </a>
+            <a href={nextstepUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-300 via-emerald-500 to-lime-300 px-4 text-sm font-extrabold text-emerald-950 shadow-[0_18px_46px_rgba(16,185,129,0.28)] transition hover:-translate-y-0.5">
+              Take NEXTSTEP <ArrowRight size={16} />
             </a>
             <div className="relative">
               <button type="button" onClick={() => setContactOpen((open) => !open)} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-sky-100 bg-white px-4 text-sm font-extrabold text-pns-navy shadow-sm transition hover:-translate-y-0.5 hover:border-amber-200" aria-expanded={contactOpen} aria-haspopup="menu">
@@ -304,6 +312,9 @@ function App() {
               <a href={ascendUrl} target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} className="mt-2 inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-pns-bright to-pns-blue px-4 font-extrabold text-white shadow-glow">
                 Open ASCEND Platform <ArrowRight size={17} />
               </a>
+              <a href={nextstepUrl} target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-300 via-emerald-500 to-lime-300 px-4 font-extrabold text-emerald-950 shadow-[0_18px_46px_rgba(16,185,129,0.28)]">
+                Take NEXTSTEP <ArrowRight size={17} />
+              </a>
             </div>
           </div>
         ) : null}
@@ -321,17 +332,20 @@ function App() {
             <motion.div initial="hidden" animate="visible" variants={stagger}>
               <motion.div variants={fadeUp} className="mb-7 inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/10 px-4 py-3 text-sm font-extrabold text-blue-100 backdrop-blur-xl">
                 <Sparkles size={17} className="text-pns-gold" />
-                Education support, made visible
+                Intelligent systems for structured human progress
               </motion.div>
               <motion.h1 variants={fadeUp} className="max-w-4xl text-5xl font-black leading-[0.98] tracking-normal md:text-7xl">
-                We help learning support become clearer, smarter, and measurable.
+                PNS builds intelligent systems that make support visible, measurable, and useful.
               </motion.h1>
               <motion.p variants={fadeUp} className="mt-7 max-w-2xl text-xl leading-9 text-slate-200">
-                PNS builds the systems behind better learner support: diagnostics, intervention, monitoring, and progress conversations that people can actually use.
+                Pragma Novus Systems develops practical system fields for real transitions: educational support quality management through ASCEND, post-education employment readiness through NEXTSTEP, and the broader operating logic that makes complex support easier to understand and improve.
               </motion.p>
               <motion.div variants={fadeUp} className="mt-9 flex flex-wrap gap-3">
                 <a href={ascendUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-pns-bright to-pns-blue px-5 font-extrabold text-white shadow-glow transition hover:-translate-y-0.5">
                   Go to ASCEND <ArrowRight size={18} />
+                </a>
+                <a href={nextstepUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-300 via-emerald-500 to-lime-300 px-5 font-extrabold text-emerald-950 shadow-[0_18px_46px_rgba(16,185,129,0.28)] transition hover:-translate-y-0.5">
+                  Take NEXTSTEP <ArrowRight size={18} />
                 </a>
                 <a href="#pathways" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/24 bg-white/10 px-5 font-extrabold text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/16">
                   Find your route
@@ -347,7 +361,7 @@ function App() {
                 <img src="/logos/pns-esqms-logo.png" alt="PNS-ESQMS logo" className="h-16 w-16 rounded-xl bg-white object-contain p-1" />
                 <div>
                   <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-blue-200">Pragma Novus Systems</p>
-                  <p className="mt-1 font-bold text-white/90">Building practical educational intelligence.</p>
+                  <p className="mt-1 font-bold text-white/90">Building practical intelligent systems.</p>
                 </div>
               </div>
               <div className="grid gap-3">
@@ -366,15 +380,57 @@ function App() {
 
         <MotionSection id="about" className="bg-white py-24">
           <div className="section-shell grid gap-12 lg:grid-cols-[.9fr_1.1fr]">
-            <SectionHeader eyebrow="About PNS" title="A strategic education-systems company building measurable support architecture.">
-              PNS is building practical educational intelligence: tools that help families, schools, educators, and partners see what support is happening, why it matters, and where progress is moving.
+            <SectionHeader eyebrow="About PNS" title="A systems company building practical intelligence for support, readiness, and progress.">
+              PNS is about turning complex human-development work into structured systems people can actually use. We design platforms, operating layers, visibility tools and implementation frameworks for organisations and individuals who need clearer movement from need to action to evidence.
             </SectionHeader>
             <motion.div variants={stagger} className="grid gap-4 sm:grid-cols-2">
-              <Card icon={ShieldCheck} title="Built with purpose">PNS designs education-support systems for people who need clarity, not noise.</Card>
-              <Card icon={BarChart3} title="Progress you can follow">Support activity becomes easier to review, explain, and improve over time.</Card>
-              <Card icon={Users} title="Designed for real users">Parents, learners, schools, educators, and partners each get a clearer way into the work.</Card>
-              <Card icon={LockKeyhole} title="Careful by design">We show the value clearly while protecting the deeper architecture behind the system.</Card>
+              <Card icon={ShieldCheck} title="Built with purpose">PNS designs intelligent systems for people who need clarity, not noise.</Card>
+              <Card icon={BarChart3} title="Progress you can follow">Support, readiness and implementation activity become easier to review, explain and improve over time.</Card>
+              <Card icon={Users} title="Designed for real users">Learners, parents, schools, candidates, employers, sponsors and partners each get a clearer way into the work.</Card>
+              <Card icon={LockKeyhole} title="Careful by design">We show stakeholder value clearly while protecting the deeper architecture behind each system.</Card>
             </motion.div>
+          </div>
+        </MotionSection>
+
+        <MotionSection id="system-fields" className="bg-pns-mist py-24">
+          <div className="section-shell">
+            <SectionHeader eyebrow="PNS intelligent system fields" title="Two active lanes, one bigger systems logic.">
+              PNS is not only one platform. It is a disciplined way of building intelligent systems for places where people need structured support, trustworthy evidence, and practical next action.
+            </SectionHeader>
+            <div className="mt-12 grid overflow-hidden rounded-[2rem] border border-white bg-white shadow-premium lg:grid-cols-2">
+              <a href="#ascend" className="group relative overflow-hidden bg-gradient-to-br from-pns-navy via-pns-blue to-pns-bright p-8 text-white transition hover:scale-[1.01] md:p-10">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.24),transparent_17rem)]" />
+                <div className="relative">
+                  <div className="mb-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-pns-blue shadow-glow">
+                    <GraduationCap size={28} />
+                  </div>
+                  <p className="text-sm font-black uppercase tracking-[0.18em] text-blue-100">Blue field</p>
+                  <h3 className="mt-3 text-4xl font-black leading-tight">Educational support quality management</h3>
+                  <p className="mt-5 text-lg leading-8 text-blue-50">
+                    ASCEND and PNS-ESQMS focus on learner support, diagnostics, intervention visibility, progress monitoring, parent communication, school improvement conversations and sponsor-ready reporting.
+                  </p>
+                  <span className="mt-7 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 font-extrabold text-pns-navy transition group-hover:gap-3">
+                    Explore ASCEND <ArrowRight size={18} />
+                  </span>
+                </div>
+              </a>
+              <a href="#nextstep" className="group relative overflow-hidden bg-gradient-to-br from-emerald-950 via-emerald-700 to-lime-300 p-8 text-white transition hover:scale-[1.01] md:p-10">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(255,255,255,0.28),transparent_16rem)]" />
+                <div className="relative">
+                  <div className="mb-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-emerald-700 shadow-[0_20px_55px_rgba(16,185,129,0.28)]">
+                    <BriefcaseBusiness size={28} />
+                  </div>
+                  <p className="text-sm font-black uppercase tracking-[0.18em] text-lime-100">Green field</p>
+                  <h3 className="mt-3 text-4xl font-black leading-tight">Post-education employment readiness</h3>
+                  <p className="mt-5 text-lg leading-8 text-emerald-50">
+                    NEXTSTEP focuses on the movement after education: safer opportunities, honest applications, document readiness, career evidence, employability confidence and guided movement into work.
+                  </p>
+                  <span className="mt-7 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 font-extrabold text-emerald-950 transition group-hover:gap-3">
+                    Explore NEXTSTEP <ArrowRight size={18} />
+                  </span>
+                </div>
+              </a>
+            </div>
           </div>
         </MotionSection>
 
@@ -436,8 +492,8 @@ function App() {
         </MotionSection>
         <MotionSection id="architecture" className="bg-pns-mist py-24">
           <div className="section-shell">
-            <SectionHeader eyebrow="Strategic Architecture" title="One ecosystem. Three clear layers.">
-              A quick map of how the public-facing pieces fit together, without exposing the deeper mechanics behind them.
+            <SectionHeader eyebrow="Strategic Architecture" title="One PNS logic. Multiple system fields.">
+              A quick map of how PNS, ASCEND and NEXTSTEP fit together without exposing the deeper mechanics behind them.
             </SectionHeader>
             <motion.div variants={stagger} className="mt-12 grid gap-5 lg:grid-cols-3">
               {strategicLayers.map(([label, title, body]) => (
@@ -483,6 +539,47 @@ function App() {
           </div>
         </MotionSection>
 
+        <MotionSection id="nextstep" className="relative overflow-hidden bg-emerald-950 py-24 text-white">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_22%,rgba(190,242,100,0.22),transparent_24rem),radial-gradient(circle_at_12%_80%,rgba(16,185,129,0.18),transparent_22rem)]" />
+          <div className="section-shell relative grid items-center gap-12 lg:grid-cols-[1fr_.95fr]">
+            <div>
+              <SectionHeader eyebrow="Post-education field" title="NEXTSTEP is the PNS system for what happens after education." inverse>
+                NEXTSTEP focuses on employability readiness after school, college, university, training or a learning programme. It helps people move from qualification, experience or potential into safer opportunities, honest applications and practical next action.
+              </SectionHeader>
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                {[
+                  ["Opportunity readiness", "Find jobs, learnerships, internships, graduate programmes and bridge opportunities with safer source checks."],
+                  ["Evidence and documents", "Structure CVs, certificates, records and declared experience so applications stay truthful and reviewable."],
+                  ["Application support", "Prepare fit explanations, materials and follow-ups from facts the member can stand behind."],
+                  ["Post-education movement", "Help people keep momentum after learning when the next step needs structure, confidence and clarity."]
+                ].map(([title, detail]) => (
+                  <div key={title} className="flex gap-3 rounded-2xl border border-white/12 bg-white/[0.08] p-4 transition duration-300 hover:-translate-y-1 hover:border-lime-200/80 hover:bg-white/[0.12]">
+                    <Sparkles className="mt-1 shrink-0 text-lime-200" size={20} />
+                    <div>
+                      <span className="font-black text-white">{title}</span>
+                      <p className="mt-1 text-sm leading-6 text-emerald-50">{detail}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <a href={nextstepUrl} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-300 via-emerald-500 to-lime-300 px-5 font-extrabold text-emerald-950 shadow-[0_18px_46px_rgba(16,185,129,0.28)] transition hover:-translate-y-0.5">
+                Take NEXTSTEP <ArrowRight size={18} />
+              </a>
+            </div>
+            <div className="rounded-3xl border border-white/14 bg-white/[0.08] p-7 shadow-[0_30px_90px_rgba(0,0,0,0.24)] backdrop-blur">
+              <p className="text-sm font-black uppercase tracking-[0.18em] text-lime-100">NEXTSTEP readiness flow</p>
+              <div className="mt-6 grid gap-4">
+                {["Profile and evidence", "Safer opportunity match", "Truthful application pack", "Follow-up and movement"].map((item, index) => (
+                  <div key={item} className="flex items-center gap-4 rounded-2xl bg-white p-4 text-emerald-950">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 font-black text-emerald-800">0{index + 1}</span>
+                    <b>{item}</b>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </MotionSection>
+
         <MotionSection id="model" className="relative overflow-hidden bg-pns-navy py-24 text-white">
           <div className="absolute inset-0">
             <img src="/images/analytics-dashboard-scene.png" alt="" className="h-full w-full object-cover opacity-[0.48]" />
@@ -491,7 +588,7 @@ function App() {
           </div>
           <div className="section-shell relative">
             <SectionHeader eyebrow="Our Model" title="Our operating logic moves from evidence to accountable improvement." inverse>
-              PNS follows a disciplined sequence that keeps each engagement focused on diagnostics, intervention, visibility, and continuous improvement.
+              PNS follows a disciplined sequence that keeps each engagement focused on context, diagnostics, intervention, visibility and continuous improvement, whether the field is education support or employment readiness.
             </SectionHeader>
             <div className="mt-12 grid gap-4 md:grid-cols-5">
               {modelSteps.map(([step, detail], index) => (
@@ -507,8 +604,8 @@ function App() {
 
         <MotionSection id="solutions" className="bg-white py-24">
           <div className="section-shell">
-            <SectionHeader eyebrow="Solutions" title="Strategic education systems without technical over-disclosure.">
-              Stakeholders see clear outcomes, disciplined implementation, and measurable reporting while internal diagnostics, scoring logic, curriculum architecture, and protected analytics remain confidential.
+            <SectionHeader eyebrow="Solutions" title="Strategic intelligent systems without technical over-disclosure.">
+              Stakeholders see clear outcomes, disciplined implementation and measurable reporting while internal diagnostics, scoring logic, workflow architecture and protected analytics remain confidential.
             </SectionHeader>
             <motion.div variants={stagger} className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
               {solutions.map(([title, Icon, text]) => (
@@ -520,11 +617,11 @@ function App() {
 
         <MotionSection id="ecosystem" className="bg-pns-mist py-24">
           <div className="section-shell grid gap-10 lg:grid-cols-[.9fr_1.1fr]">
-            <SectionHeader eyebrow="Strategic Ecosystem" title="ASCEND is the active platform. The PNS ecosystem is broader.">
-              Work inside ASCEND strengthens the foundation for future educational intelligence systems, institutional support systems, analytics-driven intervention, scalable support frameworks, and new education innovation platforms.
+            <SectionHeader eyebrow="Strategic Ecosystem" title="ASCEND and NEXTSTEP are active expressions of a broader PNS systems ecosystem.">
+              Work inside ASCEND strengthens educational support quality management. Work inside NEXTSTEP extends the same disciplined approach into post-education employment readiness. Together they show how PNS builds practical intelligent systems around real support journeys.
             </SectionHeader>
             <div className="grid gap-4 sm:grid-cols-2">
-              {["Educational intelligence systems", "Institutional support systems", "Analytics-driven intervention", "Scalable support frameworks"].map((item) => (
+              {["Educational support quality systems", "Post-education readiness systems", "Analytics-driven intervention", "Scalable implementation frameworks"].map((item) => (
                 <div key={item} className="rounded-2xl border border-sky-100 bg-gradient-to-br from-white to-sky-50/70 p-5 shadow-[0_14px_40px_rgba(6,26,53,0.08)] transition duration-300 hover:-translate-y-2 hover:border-amber-200">
                   <BarChart3 className="mb-4 text-pns-blue" size={24} />
                   <h3 className="text-xl font-black text-pns-ink">{item}</h3>
@@ -660,9 +757,9 @@ function App() {
           <div className="section-shell relative grid items-center gap-10 lg:grid-cols-[1.1fr_.9fr]">
             <div>
               <p className="mb-3 text-sm font-extrabold uppercase tracking-[0.18em] text-blue-200">Contact PNS</p>
-              <h2 className="text-4xl font-black leading-tight md:text-6xl">Start a serious education support conversation.</h2>
+              <h2 className="text-4xl font-black leading-tight md:text-6xl">Start a serious systems conversation.</h2>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200">
-                Request a meeting, partnership discussion, school conversation, or funder briefing with Pragma Novus Systems.
+                Request a meeting, partnership discussion, school conversation, post-education readiness conversation, or funder briefing with Pragma Novus Systems.
               </p>
             </div>
             <div className="rounded-lg border border-white/14 bg-white/10 p-6 backdrop-blur-xl">
@@ -688,7 +785,7 @@ function App() {
             <img src="/logos/pns-esqms-logo.png" alt="PNS-ESQMS logo" className="h-12 w-12 rounded-lg object-contain" />
             <span className="font-bold text-pns-navy">Pragma Novus Systems</span>
           </div>
-          <p>&copy; 2026 PNS. ASCEND is the flagship live implementation of the PNS education-intelligence ecosystem. Proprietary methods protected.</p>
+          <p>&copy; 2026 PNS. ASCEND and NEXTSTEP are active expressions of the PNS intelligent-systems ecosystem. Proprietary methods protected.</p>
         </div>
       </footer>
     </div>
