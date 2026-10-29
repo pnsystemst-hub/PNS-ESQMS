@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import PnsAssistant from "./PnsAssistant";
-import { ArrowRight, BookOpen, Briefcase, HeartHandshake, Mail, MapPin, Menu, Phone, School, Sprout, Users, X } from "lucide-react";
+import { ArrowRight, BookOpen, Briefcase, Download, HeartHandshake, Mail, MapPin, Menu, Phone, School, Sprout, Users, X } from "lucide-react";
 
 const email = "frontdesk@pragmansystems.co.za";
 const phoneDisplay = "+27 67 033 6452";
@@ -9,6 +9,7 @@ const phoneHref = "tel:+27670336452";
 const mailHref = `mailto:${email}?subject=${encodeURIComponent("Enquiry from the PNS website")}`;
 const ascendUrl = "https://ascendhtcenter.pragmansystems.co.za/";
 const nextstepUrl = "https://nextstep.pragmansystems.co.za/";
+const nextstepApkUrl = "https://nextstep.pragmansystems.co.za/download/nextstep.apk";
 
 const fadeUp = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
 
@@ -61,6 +62,7 @@ const products = [
     points: ["Safer job and learnership searches", "CVs and documents in one place", "Applications you can stand behind"],
     href: nextstepUrl,
     cta: "Visit NextStep",
+    app: { href: nextstepApkUrl, label: "Download for Android", note: "Android 7.0 or later. Not on the Play Store yet: your phone will ask you to allow the install." },
     icon: Sprout,
     band: "from-pns-emerald via-[#146b59] to-[#2c8a72]",
     dot: "bg-pns-emerald",
@@ -178,11 +180,17 @@ function App() {
                         <li key={pt} className="flex items-center gap-3 text-sm font-semibold"><span className={`h-2 w-2 rounded-full ${p.dot}`} />{pt}</li>
                       ))}
                     </ul>
-                    <div className="mt-auto pt-7">
+                    <div className="mt-auto flex flex-wrap gap-3 pt-7">
                       <a href={p.href} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 rounded-full px-5 py-3 font-bold text-white transition ${p.button}`}>
                         {p.cta} <ArrowRight size={17} />
                       </a>
+                      {p.app && (
+                        <a href={p.app.href} download className="inline-flex items-center gap-2 rounded-full border-2 border-pns-emerald px-5 py-3 font-bold text-pns-emerald transition hover:bg-pns-emerald hover:text-white">
+                          <Download size={17} /> {p.app.label}
+                        </a>
+                      )}
                     </div>
+                    {p.app && <p className="mt-3 text-xs leading-5 text-pns-ink/60">{p.app.note}</p>}
                   </div>
                 </article>
               ))}
