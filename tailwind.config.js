@@ -4,19 +4,26 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Pragma Novus Systems brand purple, taken from the PNS logo.
         pns: {
-          navy: "#061a35",
-          blue: "#0b3f78",
-          bright: "#1687ff",
-          gold: "#c99527",
-          silver: "#e7ebf0",
-          ink: "#111827",
-          mist: "#f5f8fb"
+          deep: "#1a1038",
+          ink: "#2a1d5c",
+          plum: "#43307f",
+          violet: "#6b5bb0",
+          lilac: "#e3ddf3",
+          mist: "#f6f3fc",
+          gold: "#c9a96e", // champagne accent, used sparingly for an executive feel
+          emerald: "#0f5c4d",
+          sage: "#e4f1ec"
         }
       },
+      fontFamily: {
+        display: ["Montserrat", "ui-sans-serif", "system-ui", "sans-serif"],
+        sans: ['"DM Sans"', "ui-sans-serif", "system-ui", "sans-serif"]
+      },
       boxShadow: {
-        premium: "0 28px 90px rgba(6, 26, 53, 0.16)",
-        glow: "0 22px 70px rgba(22, 135, 255, 0.22)"
+        soft: "0 10px 30px rgba(42, 29, 92, 0.06)",
+        lift: "0 22px 50px rgba(42, 29, 92, 0.14)"
       }
     }
   },

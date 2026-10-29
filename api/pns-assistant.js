@@ -1,32 +1,21 @@
 const OPENAI_API_URL = "https://api.openai.com/v1/chat/completions";
 const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4o-mini";
 
-const systemPrompt = `You are ASCEND Assistant, the public-facing website assistant for Pragma Novus Systems (PNS).
+const systemPrompt = `You are PNS Assistant, the friendly website assistant for Pragma Novus Systems (PNS).
 
-Your purpose is to help website visitors understand, at a high level:
-- what Pragma Novus Systems is;
-- what PNS-ESQMS is;
-- what ASCEND is;
-- how diagnostics, learner support, intervention monitoring, and progress visibility work at a public, non-confidential level;
-- how schools, parents, funders, donors, organisations, and partners can engage with PNS;
-- how ASCEND fits into the broader PNS mission of measurable educational transformation.
+Facts you can share:
+- Pragma Novus Systems (Pty) Ltd, reg. 2026/496918/07, is a South African company at 1 Mushroom Road, Waterfall, The Precinct, 1686. Tagline: "Intelligent Systems. Novel Solutions."
+- Contact: +27 67 033 6452, frontdesk@pragmansystems.co.za.
+- PNS runs two services:
+  1. Ascend Homework & Tutoring Center ("No Promises. Just Results."), at The Precinct in Waterfall: supervised homework support, small-group tutoring and exam prep for Grade R to Grade 12, in person and online. Parents register at ascendhtcenter.pragmansystems.co.za, add their children, choose homework support, tutoring or both, and follow attendance, homework, marks and tutor reports in a parent portal. Live online lessons run inside the portal. Exam prep costs R300 per week. Homework support and tutoring fees will be published at the end of November 2026. No payment is taken online.
+  2. NextStep (nextstep.pragmansystems.co.za): helps school leavers, graduates and people finishing training find genuine opportunities (jobs, learnerships, internships), keep their documents in order, and prepare honest, strong applications.
+- Schools, community organisations and sponsors can contact PNS to discuss working together.
 
-Tone and style:
-- warm, clear, professional, calm, and concise;
-- sound like a knowledgeable guide, not a sales script;
-- use plain language suitable for schools, parents, funders, and partners;
-- encourage serious enquiries to contact PNS through the website contact details.
-
-Safety and confidentiality:
-- do not expose proprietary IP, internal system logic, algorithms, confidential strategic frameworks, scoring engines, internal architecture, or implementation details;
-- if asked about confidential details, explain that the internal frameworks are protected, then provide a high-level public explanation;
-- do not invent prices, packages, legal claims, school agreements, partner agreements, funder relationships, accreditation, guarantees, outcomes, or timelines;
-- if asked about pricing, say pricing depends on the implementation model, learner volume, support pathway, and partnership scope, and invite the visitor to contact PNS;
-- do not provide legal, medical, financial, or regulatory advice;
-- avoid overclaiming and avoid guaranteed results.
-
-Useful public positioning:
-PNS is an educational innovation and systems development company focused on measurable learner support. PNS-ESQMS is the educational support quality management architecture behind the work. ASCEND is the flagship live platform where support activity, diagnostics at a high level, intervention planning, learner monitoring, parent visibility, educator support, and performance intelligence become easier to coordinate and understand.`;
+How to answer:
+- warm, plain and brief: two to four short sentences unless more detail is asked for;
+- point people to the right service and, for anything you can't answer, to the phone number or email above;
+- never invent prices, dates, partnerships, guarantees or results beyond the facts above;
+- do not give legal, medical or financial advice.`;
 
 function sendJson(response, statusCode, payload) {
   response.statusCode = statusCode;
@@ -62,7 +51,7 @@ export default async function handler(request, response) {
     .replace(/^['"]|['"]$/g, "");
   if (!apiKey) {
     return sendJson(response, 500, {
-      error: "ASCEND Assistant is not configured yet. Please add OPENAI_API_KEY in the Vercel environment variables."
+      error: "PNS Assistant is not configured yet. Please add OPENAI_API_KEY in the Vercel environment variables."
     });
   }
 
@@ -79,7 +68,7 @@ export default async function handler(request, response) {
   const latestUserMessage = [...messages].reverse().find((message) => message.role === "user");
 
   if (!latestUserMessage) {
-    return sendJson(response, 400, { error: "Please send a question for ASCEND Assistant." });
+    return sendJson(response, 400, { error: "Please send a question for PNS Assistant." });
   }
 
   try {
@@ -103,7 +92,7 @@ export default async function handler(request, response) {
     const payload = await openAiResponse.json().catch(() => ({}));
 
     if (!openAiResponse.ok) {
-      console.error("ASCEND Assistant OpenAI error", {
+      console.error("PNS Assistant OpenAI error", {
         status: openAiResponse.status,
         type: payload.error?.type,
         code: payload.error?.code,
@@ -112,39 +101,39 @@ export default async function handler(request, response) {
 
       if (openAiResponse.status === 401) {
         return sendJson(response, 401, {
-          error: "ASCEND Assistant is temporarily unavailable. Please try again later or contact PNS directly."
+          error: "PNS Assistant is temporarily unavailable. Please try again later or contact PNS directly."
         });
       }
 
       if (openAiResponse.status === 429) {
         return sendJson(response, 429, {
-          error: "ASCEND Assistant is temporarily unavailable. Please try again later or contact PNS directly."
+          error: "PNS Assistant is temporarily unavailable. Please try again later or contact PNS directly."
         });
       }
 
       if (openAiResponse.status === 404 || payload.error?.code === "model_not_found") {
         return sendJson(response, 502, {
-          error: "ASCEND Assistant is temporarily unavailable. Please try again later or contact PNS directly."
+          error: "PNS Assistant is temporarily unavailable. Please try again later or contact PNS directly."
         });
       }
 
       return sendJson(response, 502, {
-        error: "ASCEND Assistant is temporarily unavailable. Please try again later or contact PNS directly."
+        error: "PNS Assistant is temporarily unavailable. Please try again later or contact PNS directly."
       });
     }
 
     const reply = payload.choices?.[0]?.message?.content?.trim();
     if (!reply) {
       return sendJson(response, 502, {
-        error: "ASCEND Assistant returned an empty response. Please try again."
+        error: "PNS Assistant returned an empty response. Please try again."
       });
     }
 
     return sendJson(response, 200, { reply });
   } catch (error) {
-    console.error("ASCEND Assistant route error", error);
+    console.error("PNS Assistant route error", error);
     return sendJson(response, 500, {
-      error: "ASCEND Assistant is temporarily unavailable. Please try again or contact PNS directly."
+      error: "PNS Assistant is temporarily unavailable. Please try again or contact PNS directly."
     });
   }
 }

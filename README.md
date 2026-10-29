@@ -1,25 +1,30 @@
-# Pragma Novus Systems Landing Page
+# Pragma Novus Systems website
 
-React + Vite + TailwindCSS + Framer Motion landing page for Pragma Novus Systems, positioning ASCEND as the flagship educational support implementation while protecting proprietary ESQMS system logic.
+The public site for Pragma Novus Systems (pragmansystems.co.za): who PNS is, its two services (Ascend Homework & Tutoring Center and NextStep), and how to get in touch. React + Vite + Tailwind CSS + Framer Motion, deployed on Vercel.
 
-## Local Development
+## Local development
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Production Build
+## Production build
 
 ```bash
 npm run build
 ```
 
-## Vercel Settings
+## Brand assets
+
+- `public/logos/pns-logo.png`: full PNS logo
+- `public/logos/pns-mark.png`: P-orbit mark (favicon and header)
+- `public/og-image.png`: link-preview thumbnail (1200×630)
+- `brand-src/`: HTML sources the mark and thumbnail were rendered from (not published)
+
+## Vercel settings
 
 - Framework Preset: Vite
 - Build Command: `npm run build`
 - Output Directory: `dist`
-- Root Directory: repo root
-
-The public-facing copy avoids disclosure of internal ESQMS diagnostic logic, microskill mapping, intervention rules, scoring engines, curriculum architecture mechanics, and proprietary learner analytics.
+- Optional: `OPENAI_API_KEY` (and `OPENAI_MODEL`) for the PNS Assistant chat at `/api/pns-assistant`

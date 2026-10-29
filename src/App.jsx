@@ -1,59 +1,26 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import AscendAssistant from "./AscendAssistant";
-import {
-  ArrowRight,
-  BarChart3,
-  BriefcaseBusiness,
-  Building2,
-  CheckCircle2,
-  Eye,
-  FileText,
-  GraduationCap,
-  Handshake,
-  LineChart,
-  LockKeyhole,
-  Mail,
-  Menu,
-  MonitorCheck,
-  Phone,
-  ShieldCheck,
-  Sparkles,
-  Target,
-  Users,
-  X
-} from "lucide-react";
+import PnsAssistant from "./PnsAssistant";
+import { ArrowRight, BookOpen, Briefcase, HeartHandshake, Mail, MapPin, Menu, Phone, School, Sprout, Users, X } from "lucide-react";
 
 const email = "frontdesk@pragmansystems.co.za";
-const phoneDisplay = "(+27) 67 033 6452";
+const phoneDisplay = "+27 67 033 6452";
 const phoneHref = "tel:+27670336452";
-const mailHref = `mailto:${email}?subject=${encodeURIComponent("PNS website enquiry")}`;
-const ascendUrl = "https://ascend.pragmansystems.co.za/";
+const mailHref = `mailto:${email}?subject=${encodeURIComponent("Enquiry from the PNS website")}`;
+const ascendUrl = "https://ascendhtcenter.pragmansystems.co.za/";
 const nextstepUrl = "https://nextstep.pragmansystems.co.za/";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0 }
-};
+const fadeUp = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
 
-const stagger = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.08
-    }
-  }
-};
-
-function MotionSection({ id, className = "", children }) {
+function Section({ id, className = "", children }) {
   return (
     <motion.section
       id={id}
-      className={className}
+      className={`scroll-mt-20 ${className}`}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.18 }}
-      transition={{ duration: 0.55, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
       variants={fadeUp}
     >
       {children}
@@ -61,731 +28,239 @@ function MotionSection({ id, className = "", children }) {
   );
 }
 
-function SectionHeader({ eyebrow, title, children, inverse = false }) {
-  return (
-    <div className="max-w-3xl">
-      <p className={`mb-3 text-sm font-extrabold uppercase tracking-[0.18em] ${inverse ? "text-blue-200" : "text-pns-blue"}`}>
-        {eyebrow}
-      </p>
-      <h2 className={`text-3xl font-black leading-tight tracking-normal md:text-5xl ${inverse ? "text-white" : "text-pns-ink"}`}>
-        {title}
-      </h2>
-      {children ? (
-        <p className={`mt-5 text-lg leading-8 ${inverse ? "text-slate-300" : "text-slate-600"}`}>{children}</p>
-      ) : null}
-    </div>
-  );
+function Eyebrow({ children, light = false }) {
+  return <p className={`mb-3 text-xs font-bold uppercase tracking-[0.2em] ${light ? "text-pns-lilac" : "text-pns-violet"}`}>{children}</p>;
 }
 
-function Card({ icon: Icon, title, children }) {
-  return (
-    <motion.article
-      variants={fadeUp}
-      className="group rounded-2xl border border-sky-100 bg-gradient-to-br from-white via-white to-sky-50/70 p-6 shadow-[0_18px_50px_rgba(6,26,53,0.08)] transition duration-300 hover:-translate-y-2 hover:border-amber-200 hover:shadow-[0_28px_80px_rgba(14,165,233,0.18)]"
-    >
-      <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-sky-50 to-amber-50 text-pns-blue shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] transition group-hover:scale-105 group-hover:from-pns-blue group-hover:to-pns-bright group-hover:text-white">
-        <Icon size={24} strokeWidth={2.1} />
-      </div>
-      <h3 className="text-xl font-extrabold leading-snug text-pns-ink">{title}</h3>
-      <p className="mt-3 leading-7 text-slate-600">{children}</p>
-    </motion.article>
-  );
-}
+const navItems = [
+  ["Our products", "#products"],
+  ["Who we help", "#who"],
+  ["About us", "#about"],
+  ["Contact", "#contact"]
+];
 
+const products = [
+  {
+    name: "Ascend",
+    full: "Ascend Homework & Tutoring Center",
+    tag: "No Promises. Just Results.",
+    body: "Homework support, small-group tutoring and exam prep at The Precinct in Waterfall. Parents get their own portal to follow attendance, marks and tutor reports, and learners can join live online lessons.",
+    points: ["Grade R to Grade 12", "In person and online", "Exam prep from R300 per week"],
+    href: ascendUrl,
+    cta: "Visit Ascend",
+    icon: BookOpen,
+    band: "from-pns-ink via-pns-plum to-pns-violet",
+    dot: "bg-pns-violet",
+    button: "bg-pns-ink hover:bg-pns-plum"
+  },
+  {
+    name: "NextStep",
+    full: "NextStep",
+    tag: "For life after school.",
+    body: "Helps school leavers, graduates and anyone finishing a training programme take their next step: finding genuine opportunities, keeping documents in order and putting together honest, strong applications.",
+    points: ["Safer job and learnership searches", "CVs and documents in one place", "Applications you can stand behind"],
+    href: nextstepUrl,
+    cta: "Visit NextStep",
+    icon: Sprout,
+    band: "from-pns-emerald via-[#146b59] to-[#2c8a72]",
+    dot: "bg-pns-emerald",
+    button: "bg-pns-emerald hover:bg-[#0b4a3e]"
+  }
+];
 
-function LearningDataScene({ title, label, detail, variant }) {
-  const isTracking = variant === "tracking";
-  const isIntervention = variant === "intervention";
-  const bars = isTracking ? [46, 58, 64, 72, 81] : isIntervention ? [72, 64, 77, 84, 88] : [38, 52, 61, 73, 79];
+// [icon, title, body, link, call to action, icon colours, accent bar]
+const audiences = [
+  [Users, "Parents & learners", "Reliable help with homework and schoolwork, and a clear view of how your child is doing.", ascendUrl, "Go to Ascend", "bg-pns-ink text-white", "bg-pns-violet"],
+  [Briefcase, "School leavers & graduates", "Practical support to find real opportunities and apply with confidence.", nextstepUrl, "Go to NextStep", "bg-pns-emerald text-white", "bg-pns-emerald"],
+  [School, "Schools & partners", "Work with us to bring tutoring or readiness support to your learners or community.", "#contact", "Talk to us", "bg-pns-gold text-pns-deep", "bg-pns-gold"]
+];
 
-  return (
-    <motion.article
-      variants={fadeUp}
-      className="group overflow-hidden rounded-3xl border border-sky-100 bg-white shadow-[0_22px_70px_rgba(6,26,53,0.1)] transition duration-300 hover:-translate-y-2 hover:border-amber-200 hover:shadow-[0_32px_90px_rgba(14,165,233,0.18)]"
-    >
-      <div className="relative min-h-[230px] bg-gradient-to-br from-pns-navy via-pns-blue to-pns-bright p-5 text-white">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_16%,rgba(255,255,255,0.26),transparent_10rem),radial-gradient(circle_at_82%_78%,rgba(201,149,39,0.28),transparent_13rem)]" />
-        <div className="relative grid h-full gap-4">
-          <div className="flex items-center justify-between">
-            <span className="rounded-full bg-white/14 px-3 py-1 text-xs font-black uppercase tracking-[0.14em] text-blue-50">{label}</span>
-            <span className="rounded-full bg-amber-300/90 px-3 py-1 text-xs font-black text-pns-navy">Sample view</span>
-          </div>
+const values = [
+  ["Practical", "We build things people actually use, not reports that sit on a shelf."],
+  ["Honest", "No inflated promises. We show you the progress, and we're clear about what's next."],
+  ["Personal", "Behind every tool is a real person ready to help. Call or email us any time."]
+];
 
-          <div className="grid gap-4 rounded-2xl border border-white/14 bg-white/10 p-4 backdrop-blur">
-            <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-pns-blue shadow-glow">
-                {isTracking ? <LineChart size={25} /> : isIntervention ? <Target size={25} /> : <GraduationCap size={25} />}
-              </div>
-              <div>
-                <p className="text-sm font-bold text-blue-100">{isTracking ? "Weekly movement" : isIntervention ? "Support focus" : "Learning picture"}</p>
-                <h3 className="text-2xl font-black">{title}</h3>
-              </div>
-            </div>
-
-            <div className="flex h-24 items-end gap-2 rounded-2xl bg-white/10 p-3">
-              {bars.map((height, index) => (
-                <div key={height + index} className="flex flex-1 flex-col items-center gap-2">
-                  <div className="w-full rounded-t-xl bg-gradient-to-t from-amber-300 to-white shadow-[0_0_18px_rgba(255,255,255,0.22)]" style={{ height: `${height}%` }} />
-                  <span className="text-[10px] font-black text-blue-100">W{index + 1}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="p-6">
-        <p className="text-sm font-black uppercase tracking-[0.16em] text-pns-blue">What this represents</p>
-        <p className="mt-3 leading-7 text-slate-600">{detail}</p>
-      </div>
-    </motion.article>
-  );
-}
 function App() {
-  const [activeBriefing, setActiveBriefing] = useState("schools");
   const [menuOpen, setMenuOpen] = useState(false);
-  const [contactOpen, setContactOpen] = useState(false);
-  const navItems = [
-    ["What we do", "#about"],
-    ["System fields", "#system-fields"],
-    ["ASCEND", "#ascend"],
-    ["NEXTSTEP", "#nextstep"],
-    ["Schools", "#schools"],
-    ["Partners", "#partners"]
-  ];
-  const heroCards = [
-    ["Educational support quality management", "Explore ASCEND and PNS-ESQMS", "#ascend"],
-    ["Post-education employment readiness", "Explore NEXTSTEP", "#nextstep"],
-    ["Broader intelligent systems work", "See how PNS thinks", "#system-fields"]
-  ];
-  const pathwayCards = [
-    ["If you are a parent", "click here to ask about support for your child", ascendUrl, true],
-    ["If you are a learner", "click here to reach the ASCEND platform", ascendUrl, true],
-    ["If you are moving after education", "click here to take NEXTSTEP", nextstepUrl, true],
-    ["If you are a school", "click here to explore collaboration with PNS", "#schools", false],
-    ["If you are a sponsor or partner", "click here to discuss measurable impact", "#partners", false]
-  ];
-  const strategicLayers = [
-    ["PNS", "The systems company behind the work", "Pragma Novus Systems designs intelligent support systems for education, employment readiness, monitoring, reporting and structured human progress."],
-    ["ASCEND", "Educational support quality management", "The blue education-support field: PNS-ESQMS, diagnostics, intervention visibility, learner monitoring and school-facing improvement conversations."],
-    ["NEXTSTEP", "Post-education employment readiness", "The green post-education field: safer opportunity discovery, evidence-ready applications, document readiness and guided movement after education."]
-  ];
-
-  const ascendCapabilities = [
-    ["Diagnostics", "Identify learner support needs through structured evidence."],
-    ["Intervention planning", "Move from concern to coordinated academic action."],
-    ["Learner monitoring", "Track progress, attendance, engagement, and support signals."],
-    ["Educator support", "Help educators act on evidence without losing professional judgement."],
-    ["Parent visibility", "Translate progress into clear, constructive parent-facing communication."],
-    ["Performance intelligence", "Turn raw activity into measurable insight for responsible decisions."]
-  ];
-  const modelSteps = [
-    ["Context", "Understand the learner, school, institution, and programme environment before action begins."],
-    ["Diagnostics", "Identify priority support areas while protecting proprietary diagnostic logic."],
-    ["Intervention", "Coordinate structured academic action through role-aware support pathways."],
-    ["Monitoring", "Track progress signals, participation, evidence, and accountability over time."],
-    ["Improvement", "Refine support decisions as evidence shows what is working."]
-  ];
-
-  const solutions = [
-    ["Educational support quality management systems", Eye, "ASCEND and PNS-ESQMS make learner support, diagnostics, intervention, visibility and reporting easier to manage responsibly."],
-    ["Post-education employment readiness systems", BriefcaseBusiness, "NEXTSTEP supports people after school, college, university or training as they move into work, income, experience and credible career records."],
-    ["Structured intervention pathways", GraduationCap, "A disciplined implementation layer that moves teams from diagnosis to coordinated action."],
-    ["Analytics-driven monitoring", LineChart, "Review-friendly progress views that strengthen accountability without overwhelming users."],
-    ["Parent, learner and candidate reporting", FileText, "Clear communication that builds confidence and keeps improvement or readiness conversations practical."],
-    ["Institutional support systems", Building2, "Support architecture that strengthens existing organisations rather than replacing leadership, educators or programme teams."],
-    ["Scalable implementation frameworks", MonitorCheck, "Programme support for initiatives that must be visible, repeatable, measurable and reportable."]
-  ];
-
-  const briefings = {
-    schools: {
-      label: "Schools",
-      title: "Schools gain a clearer operating layer for academic improvement.",
-      body: "PNS positions ASCEND as a structured extension of the school's academic ecosystem, improving visibility, coordination, and accountability without displacing school leadership.",
-      points: [
-        "Strengthens management conversations with progress evidence.",
-        "Creates a clearer bridge between academic concern and action.",
-        "Supports implementation discipline while protecting educator authority."
-      ]
-    },
-    parents: {
-      label: "Parents",
-      title: "Parents receive progress language they can understand and trust.",
-      body: "ASCEND translates educational support into measured, parent-friendly visibility. The emphasis is confidence, transparency, and constructive next-step action.",
-      points: [
-        "Makes learner progress easier to follow over time.",
-        "Reduces uncertainty by showing that support is structured.",
-        "Creates a calmer, more informed parent-school conversation."
-      ]
-    },
-    sponsors: {
-      label: "Sponsors",
-      title: "Sponsors invest in support that can be measured responsibly.",
-      body: "PNS gives sponsors a credible way to fund learner development through measurable milestones, responsible implementation oversight, and clear reporting language for boards, communities, and education stakeholders.",
-      points: [
-        "Shows how sponsored support contributes to learner confidence, academic participation, and measurable improvement.",
-        "Provides reporting signals sponsors can use for impact reviews and social investment narratives.",
-        "Creates a scalable structure for sponsor-backed education progression without exposing protected ESQMS mechanics."
-      ]
-    },
-    partners: {
-      label: "Partners",
-      title: "Partners gain a professionally governed education systems partner.",
-      body: "PNS works with education organisations, community programmes, school groups, and implementation partners that need credible structure, learner progress visibility, and accountable delivery.",
-      points: [
-        "Clarifies partnership roles, reporting expectations, and programme value from the outset.",
-        "Supports partner conversations with schools, parents, sponsors, and community stakeholders.",
-        "Positions ASCEND as visible, structured, and professionally governed."
-      ]
-    }
-  };
 
   return (
-    <div className="min-h-screen overflow-hidden text-pns-ink">
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/20 bg-white/[0.9] shadow-[0_12px_40px_rgba(6,26,53,0.08)] backdrop-blur-xl">
-        <nav className="section-shell flex min-h-[76px] items-center justify-between gap-4">
+    <div className="min-h-screen bg-white text-pns-ink">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-pns-lilac/60 bg-white/90 backdrop-blur-xl">
+        <nav className="section-shell flex h-[72px] items-center justify-between gap-4">
           <a href="#top" className="flex items-center gap-3" aria-label="Pragma Novus Systems home">
-            <img src="/logos/pns-esqms-logo.png" alt="PNS-ESQMS Pragma Novus Systems" className="h-14 w-14 rounded-xl bg-white object-contain shadow-sm" />
-            <div className="hidden leading-tight sm:block">
-              <strong className="block text-sm font-black text-pns-navy">Pragma Novus Systems</strong>
-              <span className="text-xs font-semibold text-slate-500">Practical intelligent systems, built with care</span>
-            </div>
+            <img src="/logos/pns-mark.png" alt="" className="h-11 w-11" />
+            <span className="leading-tight">
+              <strong className="block font-display text-sm font-bold tracking-[0.14em] text-pns-ink">PRAGMA NOVUS</strong>
+              <span className="block font-display text-[10px] tracking-[0.42em] text-pns-ink/80">SYSTEMS</span>
+            </span>
           </a>
-
-          <div className="hidden items-center rounded-full border border-sky-100 bg-white/80 p-1 text-sm font-bold text-slate-700 shadow-sm lg:flex">
+          <div className="hidden items-center gap-1 text-sm font-semibold md:flex">
             {navItems.map(([label, href]) => (
-              <a key={href} href={href} className="rounded-full px-4 py-2 transition hover:bg-sky-50 hover:text-pns-blue focus:bg-sky-50 focus:text-pns-blue">
+              <a key={href} href={href} className="rounded-full px-4 py-2 text-pns-ink/80 transition hover:bg-pns-mist hover:text-pns-ink">
                 {label}
               </a>
             ))}
-          </div>
-
-          <div className="hidden items-center gap-2 lg:flex">
-            <a href={ascendUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-pns-bright to-pns-blue px-4 text-sm font-extrabold text-white shadow-glow transition hover:-translate-y-0.5">
-              Open ASCEND <ArrowRight size={16} />
+            <a href="#contact" className="ml-2 inline-flex items-center gap-2 rounded-full bg-pns-ink px-5 py-2.5 font-bold text-white transition hover:bg-pns-violet">
+              Get in touch
             </a>
-            <a href={nextstepUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-300 via-emerald-500 to-lime-300 px-4 text-sm font-extrabold text-emerald-950 shadow-[0_18px_46px_rgba(16,185,129,0.28)] transition hover:-translate-y-0.5">
-              Take NEXTSTEP <ArrowRight size={16} />
-            </a>
-            <div className="relative">
-              <button type="button" onClick={() => setContactOpen((open) => !open)} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-sky-100 bg-white px-4 text-sm font-extrabold text-pns-navy shadow-sm transition hover:-translate-y-0.5 hover:border-amber-200" aria-expanded={contactOpen} aria-haspopup="menu">
-                <Mail size={17} /> Contact
-              </button>
-              {contactOpen ? (
-                <div className="absolute right-0 top-[calc(100%+0.65rem)] z-50 grid min-w-72 gap-2 rounded-2xl border border-sky-100 bg-white p-3 shadow-premium" role="menu">
-                  <a href={mailHref} onClick={() => setContactOpen(false)} className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-extrabold text-pns-navy transition hover:bg-sky-50" role="menuitem">
-                    <Mail size={18} className="text-pns-blue" /> Email PNS
-                  </a>
-                  <a href={phoneHref} onClick={() => setContactOpen(false)} className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-extrabold text-pns-navy transition hover:bg-amber-50" role="menuitem">
-                    <Phone size={18} className="text-pns-gold" /> Call {phoneDisplay}
-                  </a>
-                </div>
-              ) : null}
-            </div>
           </div>
-
-          <button type="button" onClick={() => setMenuOpen((open) => !open)} className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-sky-100 bg-white text-pns-navy shadow-sm lg:hidden" aria-label="Open website menu" aria-expanded={menuOpen}>
+          <button type="button" onClick={() => setMenuOpen((o) => !o)} className="flex h-11 w-11 items-center justify-center rounded-full border border-pns-lilac md:hidden" aria-label="Menu" aria-expanded={menuOpen}>
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </nav>
         {menuOpen ? (
-          <div className="border-t border-sky-100 bg-white/95 px-4 py-4 shadow-premium backdrop-blur-xl lg:hidden">
-            <div className="mx-auto grid max-w-md gap-2">
-              {navItems.map(([label, href]) => (
-                <a key={href} href={href} onClick={() => setMenuOpen(false)} className="rounded-2xl px-4 py-3 font-extrabold text-pns-navy transition hover:bg-sky-50">
-                  {label}
-                </a>
-              ))}
-              <button type="button" onClick={() => setContactOpen((open) => !open)} className="flex min-h-12 items-center justify-between rounded-2xl px-4 text-left font-extrabold text-pns-navy transition hover:bg-sky-50" aria-expanded={contactOpen}>
-                <span className="inline-flex items-center gap-3"><Mail size={18} /> Contact PNS</span>
-                <span aria-hidden="true">{contactOpen ? "-" : "+"}</span>
-              </button>
-              {contactOpen ? (
-                <div className="grid gap-2 rounded-2xl border border-sky-100 bg-sky-50/70 p-2">
-                  <a href={mailHref} onClick={() => { setContactOpen(false); setMenuOpen(false); }} className="flex min-h-11 items-center gap-3 rounded-xl bg-white px-3 font-extrabold text-pns-navy">
-                    <Mail size={18} className="text-pns-blue" /> Email PNS
-                  </a>
-                  <a href={phoneHref} onClick={() => { setContactOpen(false); setMenuOpen(false); }} className="flex min-h-11 items-center gap-3 rounded-xl bg-white px-3 font-extrabold text-pns-navy">
-                    <Phone size={18} className="text-pns-gold" /> Call {phoneDisplay}
-                  </a>
-                </div>
-              ) : null}
-              <a href={ascendUrl} target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} className="mt-2 inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-pns-bright to-pns-blue px-4 font-extrabold text-white shadow-glow">
-                Open ASCEND Platform <ArrowRight size={17} />
+          <div className="border-t border-pns-lilac/60 bg-white px-4 py-3 md:hidden">
+            {navItems.map(([label, href]) => (
+              <a key={href} href={href} onClick={() => setMenuOpen(false)} className="block rounded-xl px-4 py-3 font-semibold text-pns-ink hover:bg-pns-mist">
+                {label}
               </a>
-              <a href={nextstepUrl} target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-300 via-emerald-500 to-lime-300 px-4 font-extrabold text-emerald-950 shadow-[0_18px_46px_rgba(16,185,129,0.28)]">
-                Take NEXTSTEP <ArrowRight size={17} />
-              </a>
-            </div>
+            ))}
           </div>
         ) : null}
       </header>
 
       <main id="top">
-        <section className="relative min-h-screen bg-pns-navy pt-28 text-white">
-          <div className="absolute inset-0">
-            <img src="/images/classroom-learning-scene.png" alt="Learners in a classroom with education data visuals" className="h-full w-full object-cover opacity-[0.68]" />
-            <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(6,26,53,.9)_0%,rgba(6,26,53,.74)_48%,rgba(6,26,53,.38)_100%)]" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_28%,rgba(22,135,255,.24),transparent_28rem),radial-gradient(circle_at_18%_80%,rgba(201,149,39,.18),transparent_24rem)]" />
-          </div>
-
-          <div className="section-shell relative grid min-h-[calc(100vh-112px)] items-center gap-12 py-16 lg:grid-cols-[1.05fr_.95fr]">
-            <motion.div initial="hidden" animate="visible" variants={stagger}>
-              <motion.div variants={fadeUp} className="mb-7 inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/10 px-4 py-3 text-sm font-extrabold text-blue-100 backdrop-blur-xl">
-                <Sparkles size={17} className="text-pns-gold" />
-                Intelligent systems for structured human progress
-              </motion.div>
-              <motion.h1 variants={fadeUp} className="max-w-4xl text-5xl font-black leading-[0.98] tracking-normal md:text-7xl">
-                PNS builds intelligent systems that make support visible, measurable, and useful.
-              </motion.h1>
-              <motion.p variants={fadeUp} className="mt-7 max-w-2xl text-xl leading-9 text-slate-200">
-                Pragma Novus Systems develops practical system fields for real transitions: educational support quality management through ASCEND, post-education employment readiness through NEXTSTEP, and the broader operating logic that makes complex support easier to understand and improve.
-              </motion.p>
-              <motion.div variants={fadeUp} className="mt-9 flex flex-wrap gap-3">
-                <a href={ascendUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-pns-bright to-pns-blue px-5 font-extrabold text-white shadow-glow transition hover:-translate-y-0.5">
-                  Go to ASCEND <ArrowRight size={18} />
+        {/* Hero */}
+        <section className="relative overflow-hidden bg-gradient-to-br from-pns-deep via-pns-ink to-pns-plum pb-24 pt-36 text-white md:pt-44">
+          {/* Orbit motif from the logo, kept faint so it reads as texture rather than decoration */}
+          <div className="pointer-events-none absolute -right-40 -top-40 h-[620px] w-[620px] rounded-full border border-white/10" />
+          <div className="pointer-events-none absolute -right-16 -top-16 h-[380px] w-[380px] rounded-full border border-pns-gold/25" />
+          <div className="pointer-events-none absolute right-[300px] top-[330px] h-3 w-3 rounded-full bg-pns-gold/70" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-pns-gold/50 to-transparent" />
+          <div className="section-shell relative grid items-center gap-12 md:grid-cols-[1.25fr_.75fr]">
+            <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.6 }}>
+              <p className="mb-4 text-xs font-bold uppercase tracking-[0.24em] text-pns-gold">Pragma Novus Systems · South Africa</p>
+              <h1 className="font-display text-4xl font-bold leading-[1.1] md:text-6xl">
+                Helping people learn, grow and take their <span className="text-pns-gold">next step.</span>
+              </h1>
+              <p className="mt-6 max-w-xl text-lg leading-8 text-white/80">
+                We're a South African company that builds simple, practical services for learners, parents and young people starting out. Two of them are up and running today: Ascend and NextStep.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href="#products" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-white px-6 font-bold text-pns-ink transition hover:bg-pns-gold hover:text-pns-deep">
+                  See what we do <ArrowRight size={18} />
                 </a>
-                <a href={nextstepUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-300 via-emerald-500 to-lime-300 px-5 font-extrabold text-emerald-950 shadow-[0_18px_46px_rgba(16,185,129,0.28)] transition hover:-translate-y-0.5">
-                  Take NEXTSTEP <ArrowRight size={18} />
+                <a href="#contact" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/40 px-6 font-bold text-white transition hover:border-white hover:bg-white/10">
+                  Contact us
                 </a>
-                <a href="#pathways" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/24 bg-white/10 px-5 font-extrabold text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/16">
-                  Find your route
-                </a>
-                <a href="#about" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/24 px-5 font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-white/10">
-                  What PNS does
-                </a>
-              </motion.div>
+              </div>
             </motion.div>
-
-            <motion.aside initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7, ease: "easeOut", delay: 0.16 }} className="dark-glass rounded-3xl p-6 shadow-glow">
-              <div className="mb-5 flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.08] p-4">
-                <img src="/logos/pns-esqms-logo.png" alt="PNS-ESQMS logo" className="h-16 w-16 rounded-xl bg-white object-contain p-1" />
-                <div>
-                  <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-blue-200">Pragma Novus Systems</p>
-                  <p className="mt-1 font-bold text-white/90">Building practical intelligent systems.</p>
-                </div>
+            <motion.div initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7, delay: 0.15 }} className="hidden justify-center md:flex">
+              {/* brightness lifts the artwork's off-white background to the card's pure white */}
+              <div className="w-full max-w-sm overflow-hidden rounded-[2rem] bg-white shadow-[0_30px_80px_rgba(0,0,0,0.35)] ring-1 ring-pns-gold/40">
+                <img src="/logos/pns-logo.png" alt="Pragma Novus Systems logo" className="w-full brightness-[1.03]" />
               </div>
-              <div className="grid gap-3">
-                {heroCards.map(([title, action, href]) => (
-                  <a key={title} href={href} className="group rounded-2xl border border-white/12 bg-white/[0.08] p-5 transition duration-300 hover:-translate-y-1 hover:border-amber-200/70 hover:bg-white/[0.14]">
-                    <h2 className="text-xl font-black text-white">{title}</h2>
-                    <p className="mt-2 inline-flex items-center gap-2 font-bold text-blue-100 group-hover:text-white">
-                      {action} <ArrowRight size={17} />
-                    </p>
-                  </a>
-                ))}
-              </div>
-            </motion.aside>
+            </motion.div>
           </div>
         </section>
 
-        <MotionSection id="about" className="bg-white py-24">
-          <div className="section-shell grid gap-12 lg:grid-cols-[.9fr_1.1fr]">
-            <SectionHeader eyebrow="About PNS" title="A systems company building practical intelligence for support, readiness, and progress.">
-              PNS is about turning complex human-development work into structured systems people can actually use. We design platforms, operating layers, visibility tools and implementation frameworks for organisations and individuals who need clearer movement from need to action to evidence.
-            </SectionHeader>
-            <motion.div variants={stagger} className="grid gap-4 sm:grid-cols-2">
-              <Card icon={ShieldCheck} title="Built with purpose">PNS designs intelligent systems for people who need clarity, not noise.</Card>
-              <Card icon={BarChart3} title="Progress you can follow">Support, readiness and implementation activity become easier to review, explain and improve over time.</Card>
-              <Card icon={Users} title="Designed for real users">Learners, parents, schools, candidates, employers, sponsors and partners each get a clearer way into the work.</Card>
-              <Card icon={LockKeyhole} title="Careful by design">We show stakeholder value clearly while protecting the deeper architecture behind each system.</Card>
-            </motion.div>
-          </div>
-        </MotionSection>
-
-        <MotionSection id="system-fields" className="bg-pns-mist py-24">
+        {/* Products */}
+        <Section id="products" className="py-20">
           <div className="section-shell">
-            <SectionHeader eyebrow="PNS intelligent system fields" title="Two active lanes, one bigger systems logic.">
-              PNS is not only one platform. It is a disciplined way of building intelligent systems for places where people need structured support, trustworthy evidence, and practical next action.
-            </SectionHeader>
-            <div className="mt-12 grid overflow-hidden rounded-[2rem] border border-white bg-white shadow-premium lg:grid-cols-2">
-              <a href="#ascend" className="group relative overflow-hidden bg-gradient-to-br from-pns-navy via-pns-blue to-pns-bright p-8 text-white transition hover:scale-[1.01] md:p-10">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.24),transparent_17rem)]" />
-                <div className="relative">
-                  <div className="mb-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-pns-blue shadow-glow">
-                    <GraduationCap size={28} />
-                  </div>
-                  <p className="text-sm font-black uppercase tracking-[0.18em] text-blue-100">Blue field</p>
-                  <h3 className="mt-3 text-4xl font-black leading-tight">Educational support quality management</h3>
-                  <p className="mt-5 text-lg leading-8 text-blue-50">
-                    ASCEND and PNS-ESQMS focus on learner support, diagnostics, intervention visibility, progress monitoring, parent communication, school improvement conversations and sponsor-ready reporting.
-                  </p>
-                  <span className="mt-7 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 font-extrabold text-pns-navy transition group-hover:gap-3">
-                    Explore ASCEND <ArrowRight size={18} />
-                  </span>
-                </div>
-              </a>
-              <a href="#nextstep" className="group relative overflow-hidden bg-gradient-to-br from-emerald-950 via-emerald-700 to-lime-300 p-8 text-white transition hover:scale-[1.01] md:p-10">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(255,255,255,0.28),transparent_16rem)]" />
-                <div className="relative">
-                  <div className="mb-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-emerald-700 shadow-[0_20px_55px_rgba(16,185,129,0.28)]">
-                    <BriefcaseBusiness size={28} />
-                  </div>
-                  <p className="text-sm font-black uppercase tracking-[0.18em] text-lime-100">Green field</p>
-                  <h3 className="mt-3 text-4xl font-black leading-tight">Post-education employment readiness</h3>
-                  <p className="mt-5 text-lg leading-8 text-emerald-50">
-                    NEXTSTEP focuses on the movement after education: safer opportunities, honest applications, document readiness, career evidence, employability confidence and guided movement into work.
-                  </p>
-                  <span className="mt-7 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 font-extrabold text-emerald-950 transition group-hover:gap-3">
-                    Explore NEXTSTEP <ArrowRight size={18} />
-                  </span>
-                </div>
-              </a>
-            </div>
-          </div>
-        </MotionSection>
-
-
-        <MotionSection id="pathways" className="bg-gradient-to-br from-white via-sky-50/80 to-amber-50/40 py-20">
-          <div className="section-shell">
-            <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-              <SectionHeader eyebrow="Where should I go?" title="Choose the path that sounds like you.">
-                A simple guide for visitors who want to explore PNS, reach ASCEND, or start a conversation.
-              </SectionHeader>
-              <a href={ascendUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 w-fit items-center justify-center gap-2 rounded-full bg-pns-navy px-5 font-extrabold text-white shadow-glow transition hover:-translate-y-1 hover:bg-pns-blue">
-                Open ASCEND Platform <ArrowRight size={18} />
-              </a>
-            </div>
-            <motion.div variants={stagger} className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-              {pathwayCards.map(([title, action, href, external]) => (
-                <motion.a
-                  key={title}
-                  variants={fadeUp}
-                  href={href}
-                  target={external ? "_blank" : undefined}
-                  rel={external ? "noopener noreferrer" : undefined}
-                  className="group rounded-3xl border border-sky-100 bg-white/90 p-6 shadow-[0_18px_54px_rgba(6,26,53,0.09)] transition duration-300 hover:-translate-y-2 hover:border-amber-200 hover:shadow-[0_30px_80px_rgba(14,165,233,0.18)]"
-                >
-                  <p className="text-sm font-black uppercase tracking-[0.14em] text-pns-blue">{title}</p>
-                  <h3 className="mt-4 text-2xl font-black leading-tight text-pns-ink">{action}</h3>
-                  <span className="mt-5 inline-flex items-center gap-2 font-extrabold text-pns-blue transition group-hover:gap-3 group-hover:text-pns-navy">
-                    Continue <ArrowRight size={17} />
-                  </span>
-                </motion.a>
-              ))}
-            </motion.div>
-          </div>
-        </MotionSection>
-
-        <MotionSection id="visual-proof" className="bg-white py-24">
-          <div className="section-shell">
-            <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
-              <SectionHeader eyebrow="What PNS makes easier to see" title="Learning support should not feel invisible.">
-                Visitors get a clearer picture of the kind of visibility PNS is building: learner support, weekly movement, and focused intervention without exposing protected system logic.
-              </SectionHeader>
-              <div className="rounded-3xl border border-sky-100 bg-gradient-to-br from-sky-50 via-white to-amber-50 p-6 shadow-[0_22px_70px_rgba(6,26,53,0.08)]">
-                <div className="grid grid-cols-3 gap-3 text-center">
-                  {["Learning", "Evidence", "Progress"].map((item) => (
-                    <div key={item} className="rounded-2xl bg-white p-4 shadow-sm">
-                      <p className="text-2xl font-black text-pns-blue">{item === "Learning" ? "01" : item === "Evidence" ? "02" : "03"}</p>
-                      <p className="mt-1 text-xs font-extrabold uppercase tracking-[0.12em] text-slate-500">{item}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <motion.div variants={stagger} className="mt-10 grid gap-6 lg:grid-cols-3">
-              <LearningDataScene title="Learner support" label="Guided learning" variant="learning" detail="A public-facing picture of how support can become more structured, easier to explain, and easier to follow." />
-              <LearningDataScene title="Progress tracking" label="Data movement" variant="tracking" detail="A visual cue for weekly trends, support signals, and the movement from raw activity toward useful progress conversations." />
-              <LearningDataScene title="Intervention focus" label="Next steps" variant="intervention" detail="A simple representation of how concerns can move into planned action, review, and continuous improvement." />
-            </motion.div>
-          </div>
-        </MotionSection>
-        <MotionSection id="architecture" className="bg-pns-mist py-24">
-          <div className="section-shell">
-            <SectionHeader eyebrow="Strategic Architecture" title="One PNS logic. Multiple system fields.">
-              A quick map of how PNS, ASCEND and NEXTSTEP fit together without exposing the deeper mechanics behind them.
-            </SectionHeader>
-            <motion.div variants={stagger} className="mt-12 grid gap-5 lg:grid-cols-3">
-              {strategicLayers.map(([label, title, body]) => (
-                <motion.article key={label} variants={fadeUp} className="rounded-2xl border border-sky-100 bg-gradient-to-br from-white via-white to-amber-50/60 p-6 shadow-premium transition duration-300 hover:-translate-y-2 hover:border-amber-200">
-                  <p className="text-sm font-black uppercase tracking-[0.18em] text-pns-blue">{label}</p>
-                  <h3 className="mt-3 text-2xl font-black leading-tight text-pns-ink">{title}</h3>
-                  <p className="mt-4 leading-7 text-slate-600">{body}</p>
-                </motion.article>
-              ))}
-            </motion.div>
-          </div>
-        </MotionSection>
-
-        <MotionSection id="ascend" className="relative bg-white py-24">
-          <div className="section-shell grid items-center gap-12 lg:grid-cols-[1fr_.95fr]">
-            <div>
-              <SectionHeader eyebrow="Flagship Implementation" title="ASCEND is the flagship live implementation of the PNS vision.">
-                ASCEND is the most prominent active expression of PNS-ESQMS: the operational dashboard layer, intelligence layer, analytics layer, and measurable learner-support layer.
-              </SectionHeader>
-              <div className="mt-8 grid gap-3 sm:grid-cols-2">
-                {ascendCapabilities.map(([title, detail]) => (
-                  <div key={title} className="flex gap-3 rounded-2xl border border-sky-100 bg-gradient-to-br from-white to-sky-50/70 p-4 shadow-[0_14px_34px_rgba(6,26,53,0.07)] transition duration-300 hover:-translate-y-1 hover:border-amber-200 hover:shadow-[0_22px_60px_rgba(14,165,233,0.16)]">
-                    <Sparkles className="mt-1 shrink-0 text-pns-gold" size={20} />
+            <Eyebrow>Our products</Eyebrow>
+            <h2 className="max-w-2xl font-display text-3xl font-bold leading-tight md:text-4xl">Two services, one goal: real progress you can see.</h2>
+            <div className="mt-10 grid gap-6 md:grid-cols-2">
+              {products.map((p) => (
+                <article key={p.name} className="flex flex-col overflow-hidden rounded-3xl border border-pns-lilac bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-lift">
+                  <div className={`relative flex items-center gap-4 bg-gradient-to-br ${p.band} px-8 py-7 text-white`}>
+                    <div className="pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full border border-white/15" />
+                    <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/25"><p.icon size={24} /></span>
                     <div>
-                      <span className="font-black text-slate-800">{title}</span>
-                      <p className="mt-1 text-sm leading-6 text-slate-600">{detail}</p>
+                      <h3 className="font-display text-2xl font-bold">{p.full}</h3>
+                      <p className="text-sm font-semibold italic text-pns-gold">{p.tag}</p>
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
-            <div className="rounded-2xl border border-amber-200 bg-gradient-to-br from-white via-sky-50 to-white p-5 shadow-premium transition duration-300 hover:-translate-y-2 hover:shadow-[0_28px_80px_rgba(14,165,233,0.24)]">
-              <a
-                href={ascendUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Open the ASCEND dashboard app in a new tab"
-                className="block rounded-xl transition duration-300 hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-amber-300/50"
-              >
-                <img src="/logos/ascend-login-logo.svg" alt="ASCEND Education Intelligence Platform" className="w-full rounded-md object-contain" />
-              </a>
-            </div>
-          </div>
-        </MotionSection>
-
-        <MotionSection id="nextstep" className="relative overflow-hidden bg-emerald-950 py-24 text-white">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_22%,rgba(190,242,100,0.22),transparent_24rem),radial-gradient(circle_at_12%_80%,rgba(16,185,129,0.18),transparent_22rem)]" />
-          <div className="section-shell relative grid items-center gap-12 lg:grid-cols-[1fr_.95fr]">
-            <div>
-              <SectionHeader eyebrow="Post-education field" title="NEXTSTEP is the PNS system for what happens after education." inverse>
-                NEXTSTEP focuses on employability readiness after school, college, university, training or a learning programme. It helps people move from qualification, experience or potential into safer opportunities, honest applications and practical next action.
-              </SectionHeader>
-              <div className="mt-8 grid gap-3 sm:grid-cols-2">
-                {[
-                  ["Opportunity readiness", "Find jobs, learnerships, internships, graduate programmes and bridge opportunities with safer source checks."],
-                  ["Evidence and documents", "Structure CVs, certificates, records and declared experience so applications stay truthful and reviewable."],
-                  ["Application support", "Prepare fit explanations, materials and follow-ups from facts the member can stand behind."],
-                  ["Post-education movement", "Help people keep momentum after learning when the next step needs structure, confidence and clarity."]
-                ].map(([title, detail]) => (
-                  <div key={title} className="flex gap-3 rounded-2xl border border-white/12 bg-white/[0.08] p-4 transition duration-300 hover:-translate-y-1 hover:border-lime-200/80 hover:bg-white/[0.12]">
-                    <Sparkles className="mt-1 shrink-0 text-lime-200" size={20} />
-                    <div>
-                      <span className="font-black text-white">{title}</span>
-                      <p className="mt-1 text-sm leading-6 text-emerald-50">{detail}</p>
+                  <div className="flex flex-1 flex-col p-8">
+                    <p className="leading-7 text-pns-ink/75">{p.body}</p>
+                    <ul className="mt-5 grid gap-2">
+                      {p.points.map((pt) => (
+                        <li key={pt} className="flex items-center gap-3 text-sm font-semibold"><span className={`h-2 w-2 rounded-full ${p.dot}`} />{pt}</li>
+                      ))}
+                    </ul>
+                    <div className="mt-auto pt-7">
+                      <a href={p.href} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 rounded-full px-5 py-3 font-bold text-white transition ${p.button}`}>
+                        {p.cta} <ArrowRight size={17} />
+                      </a>
                     </div>
                   </div>
-                ))}
-              </div>
-              <a href={nextstepUrl} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-300 via-emerald-500 to-lime-300 px-5 font-extrabold text-emerald-950 shadow-[0_18px_46px_rgba(16,185,129,0.28)] transition hover:-translate-y-0.5">
-                Take NEXTSTEP <ArrowRight size={18} />
-              </a>
-            </div>
-            <div className="rounded-3xl border border-white/14 bg-white/[0.08] p-7 shadow-[0_30px_90px_rgba(0,0,0,0.24)] backdrop-blur">
-              <p className="text-sm font-black uppercase tracking-[0.18em] text-lime-100">NEXTSTEP readiness flow</p>
-              <div className="mt-6 grid gap-4">
-                {["Profile and evidence", "Safer opportunity match", "Truthful application pack", "Follow-up and movement"].map((item, index) => (
-                  <div key={item} className="flex items-center gap-4 rounded-2xl bg-white p-4 text-emerald-950">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 font-black text-emerald-800">0{index + 1}</span>
-                    <b>{item}</b>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </MotionSection>
-
-        <MotionSection id="model" className="relative overflow-hidden bg-pns-navy py-24 text-white">
-          <div className="absolute inset-0">
-            <img src="/images/analytics-dashboard-scene.png" alt="" className="h-full w-full object-cover opacity-[0.48]" />
-            <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(6,26,53,0.84),rgba(6,26,53,0.66),rgba(11,63,120,0.46))]" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(201,149,39,0.24),transparent_24rem)]" />
-          </div>
-          <div className="section-shell relative">
-            <SectionHeader eyebrow="Our Model" title="Our operating logic moves from evidence to accountable improvement." inverse>
-              PNS follows a disciplined sequence that keeps each engagement focused on context, diagnostics, intervention, visibility and continuous improvement, whether the field is education support or employment readiness.
-            </SectionHeader>
-            <div className="mt-12 grid gap-4 md:grid-cols-5">
-              {modelSteps.map(([step, detail], index) => (
-                <motion.div key={step} variants={fadeUp} className="rounded-lg border border-white/12 bg-white/[0.08] p-5 backdrop-blur">
-                  <span className="text-sm font-black text-pns-gold">0{index + 1}</span>
-                  <h3 className="mt-3 text-2xl font-black">{step}</h3>
-                  <p className="mt-3 text-sm leading-6 text-slate-300">{detail}</p>
-                </motion.div>
+                </article>
               ))}
             </div>
           </div>
-        </MotionSection>
+        </Section>
 
-        <MotionSection id="solutions" className="bg-white py-24">
+        {/* Who we help */}
+        <Section id="who" className="bg-pns-mist py-20">
           <div className="section-shell">
-            <SectionHeader eyebrow="Solutions" title="Strategic intelligent systems without technical over-disclosure.">
-              Stakeholders see clear outcomes, disciplined implementation and measurable reporting while internal diagnostics, scoring logic, workflow architecture and protected analytics remain confidential.
-            </SectionHeader>
-            <motion.div variants={stagger} className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {solutions.map(([title, Icon, text]) => (
-                <Card key={title} icon={Icon} title={title}>{text}</Card>
-              ))}
-            </motion.div>
-          </div>
-        </MotionSection>
-
-        <MotionSection id="ecosystem" className="bg-pns-mist py-24">
-          <div className="section-shell grid gap-10 lg:grid-cols-[.9fr_1.1fr]">
-            <SectionHeader eyebrow="Strategic Ecosystem" title="ASCEND and NEXTSTEP are active expressions of a broader PNS systems ecosystem.">
-              Work inside ASCEND strengthens educational support quality management. Work inside NEXTSTEP extends the same disciplined approach into post-education employment readiness. Together they show how PNS builds practical intelligent systems around real support journeys.
-            </SectionHeader>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {["Educational support quality systems", "Post-education readiness systems", "Analytics-driven intervention", "Scalable implementation frameworks"].map((item) => (
-                <div key={item} className="rounded-2xl border border-sky-100 bg-gradient-to-br from-white to-sky-50/70 p-5 shadow-[0_14px_40px_rgba(6,26,53,0.08)] transition duration-300 hover:-translate-y-2 hover:border-amber-200">
-                  <BarChart3 className="mb-4 text-pns-blue" size={24} />
-                  <h3 className="text-xl font-black text-pns-ink">{item}</h3>
-                  <p className="mt-3 leading-7 text-slate-600">Built through disciplined implementation, measurable evidence, and continuous improvement.</p>
-                </div>
+            <Eyebrow>Who we help</Eyebrow>
+            <h2 className="font-display text-3xl font-bold md:text-4xl">Not sure where to start? Pick the one that fits.</h2>
+            <div className="mt-10 grid gap-5 md:grid-cols-3">
+              {audiences.map(([Icon, title, body, href, cta, iconColours, bar]) => (
+                <a key={title} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="group relative overflow-hidden rounded-3xl bg-white p-7 shadow-soft transition hover:-translate-y-1 hover:shadow-lift">
+                  <span className={`absolute inset-x-0 top-0 h-1 ${bar}`} />
+                  <span className={`flex h-12 w-12 items-center justify-center rounded-2xl ${iconColours}`}><Icon size={22} /></span>
+                  <h3 className="mt-4 font-display text-xl font-bold">{title}</h3>
+                  <p className="mt-2 leading-7 text-pns-ink/75">{body}</p>
+                  <span className="mt-5 inline-flex items-center gap-2 font-bold text-pns-violet transition group-hover:gap-3">{cta} <ArrowRight size={16} /></span>
+                </a>
               ))}
             </div>
           </div>
-        </MotionSection>
+        </Section>
 
-        <MotionSection id="schools" className="bg-white py-24">
-          <div className="section-shell grid gap-8 lg:grid-cols-3">
-            <div className="lg:col-span-1">
-              <SectionHeader eyebrow="For Schools" title="An implementation layer that strengthens what already exists." />
-            </div>
-            <div className="grid gap-5 lg:col-span-2 sm:grid-cols-2">
-              <Card icon={Building2} title="Strengthens school systems">PNS works as an added implementation layer, not as a replacement for leadership, teachers, or existing school structures.</Card>
-              <Card icon={Target} title="Keeps action focused">Schools receive clearer improvement conversations around progress, accountability, and implementation priorities.</Card>
-            </div>
-          </div>
-        </MotionSection>
-
-        <MotionSection id="parents" className="bg-white py-24">
-          <div className="section-shell grid gap-10 lg:grid-cols-[1fr_1fr]">
-            <SectionHeader eyebrow="For Parents" title="Confidence through visible, structured progress.">
-              Parents need clarity. ASCEND presents learning support in a way that feels understandable, measured, and action-oriented.
-            </SectionHeader>
-            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-pns-navy to-pns-blue p-7 text-white shadow-premium">
-              <div className="absolute inset-0">
-                <img src="/images/analytics-dashboard-scene.png" alt="" className="h-full w-full object-cover opacity-[0.32]" />
-                <div className="absolute inset-0 bg-gradient-to-br from-pns-navy/86 to-pns-blue/70" />
-              </div>
-              <div className="relative">
-                <h3 className="text-3xl font-black">Parent-facing value</h3>
-                <div className="mt-7 grid gap-4">
-                  {["Progress visibility", "Confidence in the process", "Measurable improvement", "Structured communication"].map((item) => (
-                    <div key={item} className="flex items-center gap-3">
-                      <CheckCircle2 className="text-blue-200" size={21} />
-                      <span className="font-bold">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </MotionSection>
-        <MotionSection id="partners" className="relative overflow-hidden bg-pns-navy py-24 text-white">
-          <div className="absolute inset-0">
-            <img src="/images/classroom-data-hero.png" alt="" className="h-full w-full object-cover opacity-[0.42]" />
-            <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(6,26,53,0.9),rgba(6,26,53,0.72),rgba(11,63,120,0.48))]" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_30%,rgba(22,135,255,0.2),transparent_22rem)]" />
-          </div>
-          <div className="section-shell relative grid gap-12 lg:grid-cols-[.95fr_1.05fr]">
-            <SectionHeader eyebrow="Sponsors & Partners" title="Scalable, measurable, accountable, and partnership-ready." inverse>
-              PNS is positioned for schools, sponsors, entities, and education partners who need evidence of implementation value without exposure to protected system internals.
-            </SectionHeader>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {["Scalable support programmes", "Impact-oriented reporting", "Professional partner communication", "Meeting-ready implementation pathway"].map((item) => (
-                <div key={item} className="rounded-lg border border-white/12 bg-white/[0.08] p-5">
-                  <Handshake className="mb-4 text-pns-gold" size={24} />
-                  <h3 className="text-xl font-black">{item}</h3>
-                </div>
-              ))}
-            </div>
-          </div>
-        </MotionSection>
-
-        <MotionSection id="briefing" className="bg-pns-mist py-24">
-          <div className="section-shell">
-            <SectionHeader eyebrow="Explore the opportunity" title="Clickable briefings for each stakeholder group.">
-              Each briefing gives decision-makers the information they need to assess relevance, value, and partnership fit while protected system architecture remains confidential.
-            </SectionHeader>
-            <div className="mt-12 grid gap-6 lg:grid-cols-[280px_1fr]">
-              <div className="grid content-start gap-3" role="tablist" aria-label="Stakeholder briefings">
-                {Object.entries(briefings).map(([key, briefing]) => (
-                  <button
-                    key={key}
-                    type="button"
-                    onClick={() => setActiveBriefing(key)}
-                    className={`min-h-14 rounded-lg border px-4 text-left font-black transition ${
-                      activeBriefing === key
-                        ? "border-pns-blue bg-gradient-to-br from-pns-navy to-pns-blue text-white shadow-glow"
-                        : "border-slate-200 bg-white text-pns-navy hover:-translate-y-0.5 hover:border-blue-200"
-                    }`}
-                  >
-                    {briefing.label}
-                  </button>
-                ))}
-              </div>
-              <motion.article
-                key={activeBriefing}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.25 }}
-                className="min-h-[330px] rounded-2xl border border-sky-100 bg-gradient-to-br from-white via-white to-sky-50/80 p-8 shadow-premium"
-              >
-                <h3 className="text-3xl font-black leading-tight text-pns-ink md:text-5xl">{briefings[activeBriefing].title}</h3>
-                <p className="mt-5 text-lg leading-8 text-slate-600">{briefings[activeBriefing].body}</p>
-                <ul className="mt-7 grid gap-4">
-                  {briefings[activeBriefing].points.map((point) => (
-                    <li key={point} className="flex gap-3 font-bold text-slate-700">
-                      <span className="mt-2 h-3 w-3 shrink-0 rounded-full bg-pns-gold shadow-[0_0_0_5px_rgba(201,149,39,0.14)]" />
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.article>
-            </div>
-          </div>
-        </MotionSection>
-
-        <MotionSection id="ip" className="bg-white py-24">
-          <div className="section-shell rounded-2xl border border-sky-100 bg-gradient-to-br from-white via-slate-50 to-amber-50/50 p-8 shadow-premium md:p-12">
-            <div className="grid gap-10 lg:grid-cols-[.7fr_1.3fr]">
-              <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-pns-navy text-white">
-                <LockKeyhole size={30} />
-              </div>
-              <div>
-                <SectionHeader eyebrow="Responsible Disclosure" title="We share outcomes and value. We protect the system behind them." />
-                <p className="mt-6 text-lg leading-8 text-slate-600">
-                  Public PNS communications describe the value stakeholders need to understand: measurable educational transformation, diagnostic support, accountability, visibility, and partnership readiness. Internal PNS-ESQMS methodologies, diagnostic logic, intervention rules, scoring engines, curriculum architecture, and proprietary learner analytics remain confidential.
-                </p>
-              </div>
-            </div>
-          </div>
-        </MotionSection>
-
-        <MotionSection id="contact" className="relative overflow-hidden bg-gradient-to-br from-pns-navy via-pns-blue to-[#0f2745] py-24 text-white">
-          <div className="absolute inset-0">
-            <img src="/images/classroom-learning-scene.png" alt="" className="h-full w-full object-cover opacity-[0.38]" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(22,135,255,0.24),transparent_24rem),linear-gradient(110deg,rgba(6,26,53,0.86),rgba(11,63,120,0.62))]" />
-          </div>
-          <div className="section-shell relative grid items-center gap-10 lg:grid-cols-[1.1fr_.9fr]">
+        {/* About */}
+        <Section id="about" className="py-20">
+          <div className="section-shell grid gap-12 md:grid-cols-[.9fr_1.1fr] md:items-center">
             <div>
-              <p className="mb-3 text-sm font-extrabold uppercase tracking-[0.18em] text-blue-200">Contact PNS</p>
-              <h2 className="text-4xl font-black leading-tight md:text-6xl">Start a serious systems conversation.</h2>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200">
-                Request a meeting, partnership discussion, school conversation, post-education readiness conversation, or funder briefing with Pragma Novus Systems.
+              <Eyebrow>About us</Eyebrow>
+              <h2 className="font-display text-3xl font-bold leading-tight md:text-4xl">Intelligent systems. Novel solutions. Real people.</h2>
+              <p className="mt-5 text-lg leading-8 text-pns-ink/75">
+                Pragma Novus Systems (PNS) designs and runs services that make learning and early careers easier to manage and easier to see. We start small, listen closely, and only grow what genuinely helps.
               </p>
             </div>
-            <div className="rounded-lg border border-white/14 bg-white/10 p-6 backdrop-blur-xl">
-              <img src="/logos/pns-esqms-logo.png" alt="PNS-ESQMS logo" className="mb-6 h-24 w-24 rounded-lg bg-white object-contain p-2" />
-              <div className="grid gap-3">
-                <a href={mailHref} className="inline-flex min-h-12 items-center gap-3 rounded-lg bg-white px-4 font-extrabold text-pns-navy transition hover:-translate-y-0.5">
-                  <Mail size={19} /> {email}
-                </a>
-                <a href={phoneHref} className="inline-flex min-h-12 items-center gap-3 rounded-lg border border-white/20 px-4 font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-white/10">
-                  <Phone size={19} /> {phoneDisplay}
-                </a>
-              </div>
+            <div className="grid gap-4">
+              {values.map(([title, body]) => (
+                <div key={title} className="flex gap-4 rounded-2xl border border-pns-lilac border-l-4 border-l-pns-gold bg-white p-5 shadow-soft">
+                  <HeartHandshake className="mt-1 shrink-0 text-pns-plum" size={22} />
+                  <div>
+                    <h3 className="font-display text-lg font-bold">{title}</h3>
+                    <p className="mt-1 leading-7 text-pns-ink/75">{body}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-        </MotionSection>
+        </Section>
+
+        {/* Contact */}
+        <Section id="contact" className="relative overflow-hidden bg-gradient-to-br from-pns-deep via-pns-ink to-pns-plum py-20 text-white">
+          <div className="section-shell grid gap-10 md:grid-cols-[1.1fr_.9fr] md:items-center">
+            <div>
+              <Eyebrow light>Contact us</Eyebrow>
+              <h2 className="font-display text-3xl font-bold leading-tight md:text-5xl">We'd love to hear from you.</h2>
+              <p className="mt-5 max-w-lg text-lg leading-8 text-white/75">Questions about Ascend, NextStep or working together? Call, email or pop in. We usually reply within one working day.</p>
+            </div>
+            <div className="grid gap-3">
+              <a href={phoneHref} className="flex min-h-14 items-center gap-4 rounded-2xl bg-white px-5 font-bold text-pns-ink transition hover:-translate-y-0.5"><Phone size={20} className="text-pns-violet" /> {phoneDisplay}</a>
+              <a href={mailHref} className="flex min-h-14 items-center gap-4 rounded-2xl bg-white/10 px-5 font-bold transition hover:bg-white/15"><Mail size={20} /> {email}</a>
+              <div className="flex items-start gap-4 rounded-2xl bg-white/10 px-5 py-4 font-semibold"><MapPin size={20} className="mt-0.5 shrink-0" /> 1 Mushroom Road, Waterfall, The Precinct, 1686</div>
+            </div>
+          </div>
+        </Section>
       </main>
 
-      <AscendAssistant />
+      <PnsAssistant />
 
-      <footer className="bg-white py-8">
-        <div className="section-shell flex flex-col gap-5 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
+      <footer className="border-t border-pns-lilac py-8 text-sm text-pns-ink/70">
+        <div className="section-shell flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-3">
-            <img src="/logos/pns-esqms-logo.png" alt="PNS-ESQMS logo" className="h-12 w-12 rounded-lg object-contain" />
-            <span className="font-bold text-pns-navy">Pragma Novus Systems</span>
+            <img src="/logos/pns-mark.png" alt="" className="h-9 w-9" />
+            <span>
+              <strong className="text-pns-ink">Pragma Novus Systems (Pty) Ltd</strong> · Reg. 2026/496918/07
+            </span>
           </div>
-          <p>&copy; 2026 PNS. ASCEND and NEXTSTEP are active expressions of the PNS intelligent-systems ecosystem. Proprietary methods protected.</p>
+          <p>© {new Date().getFullYear()} Pragma Novus Systems. Ascend and NextStep are services of PNS.</p>
         </div>
       </footer>
     </div>
