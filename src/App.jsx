@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import PnsAssistant from "./PnsAssistant";
-import { ArrowRight, BookOpen, Briefcase, Download, HeartHandshake, Mail, MapPin, Menu, Phone, School, Sprout, Users, X } from "lucide-react";
+import { legalLinks } from "./Legal";
+import { ArrowRight, BadgeCheck, BookOpen, Briefcase, Check, Clock, CreditCard, Download, HeartHandshake, Lock, Mail, MapPin, Menu, Phone, Plus, School, Sprout, Users, X } from "lucide-react";
 
 const email = "frontdesk@pragmansystems.co.za";
 const phoneDisplay = "+27 67 033 6452";
@@ -35,9 +36,18 @@ function Eyebrow({ children, light = false }) {
 
 const navItems = [
   ["Our products", "#products"],
-  ["Who we help", "#who"],
+  ["Pricing", "#pricing"],
+  ["How it works", "#how"],
   ["About us", "#about"],
+  ["FAQ", "#faq"],
   ["Contact", "#contact"]
+];
+
+const trust = [
+  [BadgeCheck, "Registered SA company", "Reg. 2026/496918/07"],
+  [CreditCard, "Secure payments", "Processed by Payfast"],
+  [Lock, "Your data protected", "Handled in line with POPIA"],
+  [Clock, "Real people", "Reply within one working day"]
 ];
 
 const products = [
@@ -45,8 +55,14 @@ const products = [
     name: "Ascend",
     full: "Ascend Homework & Tutoring Center",
     tag: "No Promises. Just Results.",
-    body: "Homework support, small-group tutoring and exam prep at The Precinct in Waterfall. Parents get their own portal to follow attendance, marks and tutor reports, and learners can join live online lessons.",
-    points: ["Grade R to Grade 12", "In person and online", "Exam prep from R300 per week"],
+    body: "A calm, structured place for your child to finish homework properly, close learning gaps and prepare for tests and exams. Our tutors work in person at The Precinct in Waterfall and online in a live classroom, and you follow every step in your own parent portal.",
+    points: [
+      "Supervised homework, Monday to Thursday, 15:00–18:00",
+      "One-on-one tutoring with a dedicated tutor",
+      "CAPS-aligned exam prep and practice papers",
+      "Parent portal: attendance, homework, marks and tutor reports",
+      "Grade R to Grade 12, in person and online"
+    ],
     href: ascendUrl,
     cta: "Visit Ascend",
     icon: BookOpen,
@@ -58,8 +74,14 @@ const products = [
     name: "NextStep",
     full: "NextStep",
     tag: "For life after school.",
-    body: "Helps school leavers, graduates and anyone finishing a training programme take their next step: finding genuine opportunities, keeping documents in order and putting together honest, strong applications.",
-    points: ["Safer job and learnership searches", "CVs and documents in one place", "Applications you can stand behind"],
+    body: "Job hunting is exhausting: endless listings, scam adverts and the same CV sent out again and again. Upload your CV once and NextStep searches for genuine jobs, learnerships and internships twice a day, ranks them by how well they fit you, and helps you apply with stronger documents.",
+    points: [
+      "New matches twice a day, ranked strong to weak",
+      "Risky listings flagged: never pay to apply",
+      "Tailored CVs and cover letters, ready to send",
+      "CVs, certificates and documents in one secure place",
+      "All of it for R5 a month. Cancel anytime."
+    ],
     href: nextstepUrl,
     cta: "Visit NextStep",
     app: { href: nextstepApkUrl, label: "Download for Android", note: "Android 7.0 or later. Not on the Play Store yet: your phone will ask you to allow the install." },
@@ -80,7 +102,74 @@ const audiences = [
 const values = [
   ["Practical", "We build things people actually use, not reports that sit on a shelf."],
   ["Honest", "No inflated promises. We show you the progress, and we're clear about what's next."],
-  ["Personal", "Behind every tool is a real person ready to help. Call or email us any time."]
+  ["Personal", "Behind every tool is a real person ready to help. Call or email us any time."],
+  ["Secure", "Your information is protected, used only to deliver your service and never sold."]
+];
+
+const plans = [
+  {
+    service: "NextStep",
+    name: "Application Support",
+    price: "R5",
+    per: "/ month",
+    features: ["Matched opportunities twice a day", "Scam and risk flagging", "Tailored CVs and cover letters", "Secure document storage", "Cancel anytime"],
+    href: nextstepUrl,
+    cta: "Join NextStep",
+    featured: "Best value"
+  },
+  {
+    service: "Ascend",
+    name: "Homework Assistance",
+    price: "R750",
+    per: "/ month",
+    features: ["Monday to Thursday, 15:00–18:00", "Supervised, with help when stuck", "Homework checked before home time", "Parent portal and tutor reports"],
+    href: ascendUrl,
+    cta: "Enrol now"
+  },
+  {
+    service: "Ascend",
+    name: "One-on-one Tutoring",
+    price: "R1,250",
+    per: "/ month",
+    features: ["A dedicated private tutor", "3 hours a week (2 × 1.5 h or 1 × 3 h)", "Focus on the subjects that need it most", "In person or live online"],
+    href: ascendUrl,
+    cta: "Enrol now"
+  },
+  {
+    service: "Ascend",
+    name: "Homework & Tutoring",
+    price: "R1,500",
+    per: "/ month",
+    features: ["Daily homework sessions plus a private tutor", "Homework turned into one-on-one lessons", "R500 a month less than both separately", "Full parent portal access"],
+    href: ascendUrl,
+    cta: "Enrol now",
+    featured: "Most complete"
+  }
+];
+
+// [service, accent, steps as [title, detail]]
+const journeys = [
+  ["Ascend", "bg-pns-ink", [
+    ["Register online", "Create a parent account and add your child's grade and subjects."],
+    ["We confirm your place", "Our front desk confirms the programme, schedule, start date and fee in writing."],
+    ["Pay and start", "Pay your fee using the options we send you, and your child starts on the agreed date."],
+    ["Watch them grow", "Follow attendance, homework, marks and tutor reports in your parent portal."]
+  ]],
+  ["NextStep", "bg-pns-emerald", [
+    ["Create your account", "Sign up with your email and confirm it. It takes a minute."],
+    ["Upload your CV", "That's it. We read your skills, qualifications and experience."],
+    ["Get your matches", "New opportunities arrive twice a day, ranked by how well they fit you."],
+    ["Apply with confidence", "Send your tailored CV and cover letter, and track every application."]
+  ]]
+];
+
+const faqs = [
+  ["How do I pay?", "Online payments are processed securely by Payfast, a leading South African payment gateway, so you can pay by card, Instant EFT and other methods Payfast supports. PNS never sees or stores your full card details. For Ascend, our front desk sends you the payment options once your place is confirmed."],
+  ["When does my service start after I pay?", "NextStep paid features switch on as soon as your payment is confirmed, usually within minutes. Ascend sessions start on the date our front desk confirms with you. We don't ship anything: all our services are delivered in person or online."],
+  ["Can I cancel?", "Yes. NextStep can be cancelled at any time and won't renew the next month. Ascend enrolments can be cancelled with written notice by email or WhatsApp. If you change your mind within 7 days of buying online, you get a full refund. See our Refund & Cancellation Policy for the details."],
+  ["Does NextStep guarantee me a job?", "No honest service can. NextStep finds and ranks genuine opportunities, flags risky ones and helps you send stronger applications, but employers make the hiring decisions. We focus on improving your chances and saving you time."],
+  ["Which grades does Ascend support?", "Ascend supports learners from Grade R to Grade 12, following the CAPS curriculum, in person at The Precinct in Waterfall and online. Exam prep is also available at R300 per week."],
+  ["Is my personal information safe?", "Yes. We collect only what we need to deliver your service, store it with reputable providers, protect it with access controls and encryption, and never sell it. Our Privacy Policy explains your rights under POPIA."]
 ];
 
 function App() {
@@ -97,7 +186,7 @@ function App() {
               <span className="block font-display text-[10px] tracking-[0.42em] text-pns-ink/80">SYSTEMS</span>
             </span>
           </a>
-          <div className="hidden items-center gap-1 text-sm font-semibold md:flex">
+          <div className="hidden items-center gap-1 text-sm font-semibold lg:flex">
             {navItems.map(([label, href]) => (
               <a key={href} href={href} className="rounded-full px-4 py-2 text-pns-ink/80 transition hover:bg-pns-mist hover:text-pns-ink">
                 {label}
@@ -107,12 +196,12 @@ function App() {
               Get in touch
             </a>
           </div>
-          <button type="button" onClick={() => setMenuOpen((o) => !o)} className="flex h-11 w-11 items-center justify-center rounded-full border border-pns-lilac md:hidden" aria-label="Menu" aria-expanded={menuOpen}>
+          <button type="button" onClick={() => setMenuOpen((o) => !o)} className="flex h-11 w-11 items-center justify-center rounded-full border border-pns-lilac lg:hidden" aria-label="Menu" aria-expanded={menuOpen}>
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </nav>
         {menuOpen ? (
-          <div className="border-t border-pns-lilac/60 bg-white px-4 py-3 md:hidden">
+          <div className="border-t border-pns-lilac/60 bg-white px-4 py-3 lg:hidden">
             {navItems.map(([label, href]) => (
               <a key={href} href={href} onClick={() => setMenuOpen(false)} className="block rounded-xl px-4 py-3 font-semibold text-pns-ink hover:bg-pns-mist">
                 {label}
@@ -137,14 +226,14 @@ function App() {
                 Helping people learn, grow and take their <span className="text-pns-gold">next step.</span>
               </h1>
               <p className="mt-6 max-w-xl text-lg leading-8 text-white/80">
-                We're a South African company that builds simple, practical services for learners, parents and young people starting out. Two of them are up and running today: Ascend and NextStep.
+                We're a South African company that designs smart, practical services for learners, parents and young people starting out. From a Grade R learner catching up on reading to a graduate landing a first job, we pair intelligent tools with real people who care about the outcome.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <a href="#products" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-white px-6 font-bold text-pns-ink transition hover:bg-pns-gold hover:text-pns-deep">
-                  See what we do <ArrowRight size={18} />
+                <a href={ascendUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-white px-6 font-bold text-pns-ink transition hover:bg-pns-gold hover:text-pns-deep">
+                  Enrol at Ascend <ArrowRight size={18} />
                 </a>
-                <a href="#contact" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/40 px-6 font-bold text-white transition hover:border-white hover:bg-white/10">
-                  Contact us
+                <a href={nextstepUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/40 px-6 font-bold text-white transition hover:border-white hover:bg-white/10">
+                  Join NextStep for R5 a month
                 </a>
               </div>
             </motion.div>
@@ -154,6 +243,17 @@ function App() {
                 <img src="/logos/pns-logo.png" alt="Pragma Novus Systems logo" className="w-full brightness-[1.03]" />
               </div>
             </motion.div>
+          </div>
+          <div className="section-shell relative mt-16 grid gap-6 border-t border-white/15 pt-8 sm:grid-cols-2 md:grid-cols-4">
+            {trust.map(([Icon, title, body]) => (
+              <div key={title} className="flex items-start gap-3">
+                <Icon size={22} className="mt-0.5 shrink-0 text-pns-gold" />
+                <div>
+                  <strong className="block text-sm">{title}</strong>
+                  <span className="text-sm text-white/65">{body}</span>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -177,7 +277,7 @@ function App() {
                     <p className="leading-7 text-pns-ink/75">{p.body}</p>
                     <ul className="mt-5 grid gap-2">
                       {p.points.map((pt) => (
-                        <li key={pt} className="flex items-center gap-3 text-sm font-semibold"><span className={`h-2 w-2 rounded-full ${p.dot}`} />{pt}</li>
+                        <li key={pt} className="flex items-start gap-3 text-sm font-semibold"><span className={`mt-1.5 h-2 w-2 shrink-0 rounded-full ${p.dot}`} />{pt}</li>
                       ))}
                     </ul>
                     <div className="mt-auto flex flex-wrap gap-3 pt-7">
@@ -198,8 +298,40 @@ function App() {
           </div>
         </Section>
 
+        {/* Pricing */}
+        <Section id="pricing" className="bg-pns-mist py-20">
+          <div className="section-shell">
+            <Eyebrow>Pricing</Eyebrow>
+            <h2 className="max-w-2xl font-display text-3xl font-bold leading-tight md:text-4xl">Clear prices in rand. No hidden fees.</h2>
+            <p className="mt-4 max-w-2xl text-lg leading-8 text-pns-ink/75">All prices are in South African Rand (ZAR). You always see the exact amount before you pay, and online payments are processed securely by Payfast.</p>
+            <div className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+              {plans.map((plan) => (
+                <article key={plan.name} className={`relative flex flex-col rounded-3xl bg-white p-7 shadow-soft ${plan.featured ? "ring-2 ring-pns-gold" : "ring-1 ring-pns-lilac"}`}>
+                  {plan.featured && <span className="absolute -top-3 left-6 rounded-full bg-pns-gold px-3 py-1 text-xs font-bold text-pns-deep">{plan.featured}</span>}
+                  <p className={`text-xs font-bold uppercase tracking-[0.18em] ${plan.service === "NextStep" ? "text-pns-emerald" : "text-pns-violet"}`}>{plan.service}</p>
+                  <h3 className="mt-1 font-display text-lg font-bold">{plan.name}</h3>
+                  <p className="mt-3 font-display text-4xl font-bold">{plan.price}<span className="ml-1 font-sans text-base font-medium text-pns-ink/60">{plan.per}</span></p>
+                  <ul className="mt-5 grid flex-1 gap-2.5 text-sm">
+                    {plan.features.map((f) => (
+                      <li key={f} className="flex items-start gap-2"><Check size={16} className="mt-0.5 shrink-0 text-pns-emerald" />{f}</li>
+                    ))}
+                  </ul>
+                  <a href={plan.href} target="_blank" rel="noopener noreferrer" className={`mt-7 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 font-bold text-white transition ${plan.service === "NextStep" ? "bg-pns-emerald hover:bg-[#0b4a3e]" : "bg-pns-ink hover:bg-pns-plum"}`}>
+                    {plan.cta} <ArrowRight size={16} />
+                  </a>
+                </article>
+              ))}
+            </div>
+            <p className="mt-8 text-sm leading-6 text-pns-ink/65">
+              Ascend Exam Prep is also available at R300 per week. Your Ascend fee is confirmed in writing before you pay. See our{" "}
+              <a href="/refunds" className="font-semibold text-pns-violet underline">Refund &amp; Cancellation Policy</a> and{" "}
+              <a href="/delivery" className="font-semibold text-pns-violet underline">Service Delivery Policy</a>.
+            </p>
+          </div>
+        </Section>
+
         {/* Who we help */}
-        <Section id="who" className="bg-pns-mist py-20">
+        <Section id="who" className="py-20">
           <div className="section-shell">
             <Eyebrow>Who we help</Eyebrow>
             <h2 className="font-display text-3xl font-bold md:text-4xl">Not sure where to start? Pick the one that fits.</h2>
@@ -217,6 +349,32 @@ function App() {
           </div>
         </Section>
 
+        {/* How it works */}
+        <Section id="how" className="bg-pns-mist py-20">
+          <div className="section-shell">
+            <Eyebrow>How it works</Eyebrow>
+            <h2 className="max-w-2xl font-display text-3xl font-bold leading-tight md:text-4xl">Getting started takes minutes, not weeks.</h2>
+            <div className="mt-10 grid gap-6 md:grid-cols-2">
+              {journeys.map(([service, accent, steps]) => (
+                <div key={service} className="rounded-3xl bg-white p-8 shadow-soft">
+                  <h3 className="font-display text-xl font-bold">{service}</h3>
+                  <ol className="mt-6 grid gap-5">
+                    {steps.map(([title, body], i) => (
+                      <li key={title} className="flex gap-4">
+                        <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full font-bold text-white ${accent}`}>{i + 1}</span>
+                        <div>
+                          <strong className="block">{title}</strong>
+                          <span className="text-sm leading-6 text-pns-ink/70">{body}</span>
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Section>
+
         {/* About */}
         <Section id="about" className="py-20">
           <div className="section-shell grid gap-12 md:grid-cols-[.9fr_1.1fr] md:items-center">
@@ -225,6 +383,9 @@ function App() {
               <h2 className="font-display text-3xl font-bold leading-tight md:text-4xl">Intelligent systems. Novel solutions. Real people.</h2>
               <p className="mt-5 text-lg leading-8 text-pns-ink/75">
                 Pragma Novus Systems (PNS) designs and runs services that make learning and early careers easier to manage and easier to see. We start small, listen closely, and only grow what genuinely helps.
+              </p>
+              <p className="mt-4 leading-8 text-pns-ink/75">
+                "Pragma" stands for practical action; "Novus" means new. Ascend and NextStep come from the same idea: when progress is easy to see and support is easy to reach, people go further. Both are run from our base at The Precinct in Waterfall, and we improve them every month based on what families and young people tell us.
               </p>
             </div>
             <div className="grid gap-4">
@@ -236,6 +397,25 @@ function App() {
                     <p className="mt-1 leading-7 text-pns-ink/75">{body}</p>
                   </div>
                 </div>
+              ))}
+            </div>
+          </div>
+        </Section>
+
+        {/* FAQ */}
+        <Section id="faq" className="bg-pns-mist py-20">
+          <div className="section-shell max-w-3xl">
+            <Eyebrow>FAQ</Eyebrow>
+            <h2 className="font-display text-3xl font-bold md:text-4xl">Questions people often ask</h2>
+            <div className="mt-8 grid gap-3">
+              {faqs.map(([q, a]) => (
+                <details key={q} className="group rounded-2xl bg-white p-5 shadow-soft">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-display font-bold [&::-webkit-details-marker]:hidden">
+                    {q}
+                    <Plus size={18} className="shrink-0 text-pns-violet transition group-open:rotate-45" />
+                  </summary>
+                  <p className="mt-3 leading-7 text-pns-ink/75">{a}</p>
+                </details>
               ))}
             </div>
           </div>
@@ -270,6 +450,12 @@ function App() {
           </div>
           <p>© {new Date().getFullYear()} Pragma Novus Systems. Ascend and NextStep are services of PNS.</p>
         </div>
+        <nav className="section-shell mt-5 flex flex-wrap gap-x-6 gap-y-2 border-t border-pns-lilac/60 pt-5 font-semibold" aria-label="Legal">
+          {legalLinks.map(([label, href]) => (
+            <a key={href} href={href} className="text-pns-ink hover:text-pns-violet">{label}</a>
+          ))}
+          <span className="text-pns-ink/50 md:ml-auto">Secure payments by Payfast · Prices in ZAR</span>
+        </nav>
       </footer>
     </div>
   );
