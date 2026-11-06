@@ -1,6 +1,6 @@
 # Pragma Novus Systems website
 
-The public site for Pragma Novus Systems (pragmansystems.co.za): who PNS is, its two services (Ascend Homework & Tutoring Center and NextStep), and how to get in touch. React + Vite + Tailwind CSS + Framer Motion, deployed on Vercel.
+The public site for Pragma Novus Systems (pragmansystems.co.za): who PNS is, the three customer pages (/parents, /tutors, /organisations), Ascend, NextStep and how to get in touch. React + Vite + Tailwind CSS + Framer Motion, deployed on Vercel.
 
 ## Local development
 

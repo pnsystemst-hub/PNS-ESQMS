@@ -11,6 +11,6 @@ if (legal) document.title = `${legal[0]} | Pragma Novus Systems`;
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    {legal ? <LegalPage path={path} /> : <App />}
+    {legal ? <LegalPage path={path} /> : <App path={path} />}
   </React.StrictMode>
 );
