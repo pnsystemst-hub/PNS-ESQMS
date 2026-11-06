@@ -38,11 +38,11 @@ function Eyebrow({ children, light = false }) {
 }
 
 const navItems = [
+  ["Our systems", "/#systems"],
+  ["Ascend", "/#ascend"],
   ["Parents", "/parents"],
   ["Tutors & businesses", "/tutors"],
   ["Schools & organisations", "/organisations"],
-  ["Ascend", "/#ascend"],
-  ["What we do", "/#what-we-do"],
   ["About", "/#about"]
 ];
 
@@ -53,7 +53,32 @@ const trust = [
   [Clock, "Real people", "Reply within one working day"]
 ];
 
-// The three ways in. Same order and same words on the Ascend home page.
+// The systems PNS has built. Only list a system once people can use it.
+const systems = [
+  {
+    icon: GraduationCap,
+    name: "Ascend",
+    line: "Educational support intelligence",
+    body: "Our largest area of work. Ascend connects assessment, targeted support, teaching, progress and everyday administration for families, tutors, schools and communities.",
+    href: "#ascend",
+    cta: "About Ascend",
+    band: "from-pns-ink via-pns-plum to-pns-violet",
+    button: "bg-pns-ink hover:bg-pns-plum"
+  },
+  {
+    icon: Sprout,
+    name: "NextStep",
+    line: "Opportunity matching for young people",
+    body: "Upload your CV once and NextStep searches for genuine jobs, learnerships and internships twice a day, flags risky listings and helps you apply. For school leavers and graduates, at R5 a month.",
+    href: nextstepUrl,
+    cta: "Visit NextStep",
+    band: "from-pns-emerald via-[#146b59] to-[#2c8a72]",
+    button: "bg-pns-emerald hover:bg-[#0b4a3e]",
+    app: { href: nextstepApkUrl, label: "Android app" }
+  }
+];
+
+// The three ways into Ascend. Same order and same words on the Ascend home page.
 const doors = [
   [Users, "Parents", "See where your child is stuck, get them the right help, and follow whether it's working.", "/parents", "For parents", "bg-pns-ink text-white", "bg-pns-violet"],
   [GraduationCap, "Tutors & tutoring businesses", "Bring your own learners and run lessons, homework, progress and billing in one workspace.", "/tutors", "For tutors and businesses", "bg-pns-plum text-white", "bg-pns-plum"],
@@ -91,7 +116,7 @@ const divisions = [
 const doorPages = {
   "/parents": {
     title: "For parents",
-    eyebrow: "For parents",
+    eyebrow: "Ascend · For parents",
     h1: "Know where your child is stuck, and whether the help is working.",
     intro: "Use only what you need. A learning check doesn't commit you to tutoring, and everything your child does shows up in one simple dashboard.",
     offers: [
@@ -115,7 +140,7 @@ const doorPages = {
   },
   "/tutors": {
     title: "For tutors and tutoring businesses",
-    eyebrow: "For tutors & tutoring businesses",
+    eyebrow: "Ascend · For tutors & tutoring businesses",
     h1: "Spend less time on admin and more time teaching.",
     intro: "If you're running your work on WhatsApp, Zoom, spreadsheets and Word documents, Ascend puts it in one place. Your learners and your business stay yours.",
     offers: [
@@ -137,7 +162,7 @@ const doorPages = {
   },
   "/organisations": {
     title: "For schools, estates and organisations",
-    eyebrow: "For schools, estates & organisations",
+    eyebrow: "Ascend · For schools, estates & organisations",
     h1: "A structured, measurable support programme, without building it yourself.",
     intro: "We bring the platform and the framework. You keep your learners, your teaching and your governance. Every programme is scoped and quoted with you, so there is nothing to buy online.",
     offers: [
@@ -213,7 +238,8 @@ const faqs = [
   ["When does my service start after I pay?", "NextStep paid features switch on as soon as your payment is confirmed, usually within minutes. Ascend sessions start on the date our front desk confirms with you. We don't ship anything: all our services are delivered in person or online."],
   ["Can I cancel?", "Yes. NextStep can be cancelled at any time and won't renew the next month. Ascend enrolments can be cancelled with written notice by email or WhatsApp. If you change your mind within 7 days of buying online, you get a full refund. See our Refund & Cancellation Policy for the details."],
   ["Does NextStep guarantee me a job?", "No honest service can. NextStep finds and ranks genuine opportunities, flags risky ones and helps you send stronger applications, but employers make the hiring decisions. We focus on improving your chances and saving you time."],
-  ["What's the difference between PNS and Ascend?", "Pragma Novus Systems is the company. Ascend is our education platform. We use it to run our own tutoring and homework programmes, and other tutors, businesses and organisations can use it to run theirs."],
+  ["Is PNS only about education?", "No. PNS develops systems. Educational support intelligence is our largest focus, through Ascend, but NextStep helps young people find work, and we'll keep developing new systems."],
+  ["What's the difference between PNS and Ascend?", "Pragma Novus Systems is the company. Ascend is the education platform we built. We use it to run our own tutoring and homework programmes, and other tutors, businesses and organisations can use it to run theirs."],
   ["Do I have to buy tutoring to use Ascend?", "No. Tutors and businesses can use Ascend with their own learners, and a learning check doesn't commit a family to tutoring."],
   ["Is my personal information safe?", "Yes. We collect only what we need to deliver your service, store it with reputable providers, protect it with access controls and encryption, and never sell it. Our Privacy Policy explains your rights under POPIA."]
 ];
@@ -374,17 +400,17 @@ function Home() {
           <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.6 }}>
             <p className="mb-4 text-xs font-bold uppercase tracking-[0.24em] text-pns-gold">Pragma Novus Systems · South Africa</p>
             <h1 className="font-display text-4xl font-bold leading-[1.1] md:text-6xl">
-              Where learning becomes <span className="text-pns-gold">measurable.</span>
+              Intelligent systems. <span className="text-pns-gold">Novel solutions.</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-8 text-white/80">
-              Educational intelligence, technology and quality-managed educational support. Ascend is the platform that brings them together, for families, tutors, schools and communities.
+              Pragma Novus Systems develops systems that solve real problems. Most of our work today is in educational support intelligence, through Ascend. NextStep, which helps young people find genuine work, shows we build beyond education, and we'll keep developing new systems.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#doors" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-white px-6 font-bold text-pns-ink transition hover:bg-pns-gold hover:text-pns-deep">
-                Find what fits you <ArrowRight size={18} />
+              <a href="#systems" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-white px-6 font-bold text-pns-ink transition hover:bg-pns-gold hover:text-pns-deep">
+                See our systems <ArrowRight size={18} />
               </a>
-              <a href="#ascend" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/40 px-6 font-bold text-white transition hover:border-white hover:bg-white/10">
-                What is Ascend?
+              <a href="#doors" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/40 px-6 font-bold text-white transition hover:border-white hover:bg-white/10">
+                Get help with learning
               </a>
             </div>
           </motion.div>
@@ -408,30 +434,39 @@ function Home() {
         </div>
       </section>
 
-      {/* The three ways in */}
-      <Section id="doors" className="py-20">
+      {/* The systems we've built */}
+      <Section id="systems" className="py-20">
         <div className="section-shell">
-          <Eyebrow>Who we help</Eyebrow>
-          <h2 className="max-w-2xl font-display text-3xl font-bold leading-tight md:text-4xl">Start with who you are.</h2>
-          <p className="mt-4 max-w-2xl text-lg leading-8 text-pns-ink/75">You don't need to understand everything we do. Pick the one that fits and see only what's relevant to you.</p>
-          <div className="mt-10"><Doors /></div>
-          <div className="mt-6 flex flex-col gap-4 rounded-3xl bg-pns-sage p-6 md:flex-row md:items-center md:justify-between">
-            <div className="flex items-start gap-4">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-pns-emerald text-white"><Sprout size={20} /></span>
-              <p className="leading-7 text-pns-ink/80"><strong className="font-display text-pns-ink">Also from PNS: NextStep.</strong> For school leavers and graduates: genuine jobs, learnerships and internships matched to your CV, for R5 a month.</p>
-            </div>
-            <div className="flex shrink-0 flex-wrap gap-3">
-              <a href={nextstepUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-pns-emerald px-5 py-3 font-bold text-white transition hover:bg-[#0b4a3e]">Visit NextStep <ArrowRight size={16} /></a>
-              <a href={nextstepApkUrl} download className="inline-flex items-center gap-2 rounded-full border-2 border-pns-emerald px-5 py-3 font-bold text-pns-emerald transition hover:bg-pns-emerald hover:text-white"><Download size={16} /> Android app</a>
-            </div>
+          <Eyebrow>Our systems</Eyebrow>
+          <h2 className="max-w-2xl font-display text-3xl font-bold leading-tight md:text-4xl">We develop systems. Here's what we've built so far.</h2>
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {systems.map((p) => (
+              <article key={p.name} className="flex flex-col overflow-hidden rounded-3xl border border-pns-lilac bg-white shadow-soft">
+                <div className={`relative flex items-center gap-4 bg-gradient-to-br ${p.band} px-8 py-7 text-white`}>
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/25"><p.icon size={24} /></span>
+                  <div>
+                    <h3 className="font-display text-2xl font-bold">{p.name}</h3>
+                    <p className="text-sm font-semibold text-pns-gold">{p.line}</p>
+                  </div>
+                </div>
+                <div className="flex flex-1 flex-col p-8">
+                  <p className="flex-1 leading-7 text-pns-ink/75">{p.body}</p>
+                  <div className="flex flex-wrap gap-3 pt-6">
+                    <a href={p.href} {...(p.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})} className={`inline-flex items-center gap-2 rounded-full px-5 py-3 font-bold text-white transition ${p.button}`}>{p.cta} <ArrowRight size={16} /></a>
+                    {p.app && <a href={p.app.href} download className="inline-flex items-center gap-2 rounded-full border-2 border-pns-emerald px-5 py-3 font-bold text-pns-emerald transition hover:bg-pns-emerald hover:text-white"><Download size={16} /> {p.app.label}</a>}
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
+          <p className="mt-6 max-w-2xl leading-7 text-pns-ink/70">Education is our largest focus today, but it isn't our only one. We'll add new systems here as they're ready for people to use.</p>
         </div>
       </Section>
 
       {/* Ascend */}
       <Section id="ascend" className="bg-pns-mist py-20">
         <div className="section-shell">
-          <Eyebrow>Ascend</Eyebrow>
+          <Eyebrow>Ascend · Where learning becomes measurable</Eyebrow>
           <h2 className="max-w-3xl font-display text-3xl font-bold leading-tight md:text-4xl">From more teaching to intelligent intervention.</h2>
           <p className="mt-4 max-w-3xl text-lg leading-8 text-pns-ink/75">Ascend is more than an online classroom. It connects assessment, targeted support, teaching, progress and everyday administration, so everyone works from the same picture of each learner.</p>
           <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
@@ -450,11 +485,21 @@ function Home() {
         </div>
       </Section>
 
-      {/* What we do */}
-      <Section id="what-we-do" className="py-20">
+      {/* The three ways into Ascend */}
+      <Section id="doors" className="py-20">
         <div className="section-shell">
-          <Eyebrow>What we do</Eyebrow>
-          <h2 className="max-w-2xl font-display text-3xl font-bold leading-tight md:text-4xl">Six areas of work, one purpose.</h2>
+          <Eyebrow>Getting help with learning</Eyebrow>
+          <h2 className="max-w-2xl font-display text-3xl font-bold leading-tight md:text-4xl">Start with who you are.</h2>
+          <p className="mt-4 max-w-2xl text-lg leading-8 text-pns-ink/75">You don't need to understand everything Ascend does. Pick the one that fits and see only what's relevant to you.</p>
+          <div className="mt-10"><Doors /></div>
+        </div>
+      </Section>
+
+      {/* What we do */}
+      <Section id="what-we-do" className="bg-pns-mist py-20">
+        <div className="section-shell">
+          <Eyebrow>Our work in education</Eyebrow>
+          <h2 className="max-w-2xl font-display text-3xl font-bold leading-tight md:text-4xl">Six areas of educational support.</h2>
           <p className="mt-4 max-w-2xl text-lg leading-8 text-pns-ink/75">Open any area to see what's in it. Use one part or several: you never have to take everything.</p>
           <div className="mt-10 grid items-start gap-4 md:grid-cols-2">
             {divisions.map(([title, line, items]) => (
@@ -473,16 +518,16 @@ function Home() {
       </Section>
 
       {/* About */}
-      <Section id="about" className="bg-pns-mist py-20">
+      <Section id="about" className="py-20">
         <div className="section-shell grid gap-12 md:grid-cols-[.9fr_1.1fr] md:items-center">
           <div>
             <Eyebrow>About us</Eyebrow>
             <h2 className="font-display text-3xl font-bold leading-tight md:text-4xl">Intelligent systems. Novel solutions. Real people.</h2>
             <p className="mt-5 text-lg leading-8 text-pns-ink/75">
-              Pragma Novus Systems (PNS) exists to make educational support more structured, measurable and accountable. PNS is the company and the framework. Ascend is the platform we built to deliver them.
+              Pragma Novus Systems (PNS) is a South African company that develops systems. We look for problems that are poorly served and build something practical to solve them, with real people behind it.
             </p>
             <p className="mt-4 leading-8 text-pns-ink/75">
-              Our approach is set out in the PNS Educational Support Quality Management System (PNS-ESQMS): start with a baseline, teach to the gaps, test in cycles, retest, and report honestly. We're based at The Precinct in Waterfall. "Pragma" stands for practical action; "Novus" means new.
+              Most of our work today is educational support intelligence. There, our approach is set out in the PNS Educational Support Quality Management System (PNS-ESQMS): start with a baseline, teach to the gaps, test in cycles, retest, and report honestly. Ascend is the platform that delivers it. Beyond education, NextStep helps young people find genuine work, and we'll keep developing new systems. We're based at The Precinct in Waterfall. "Pragma" stands for practical action; "Novus" means new.
             </p>
           </div>
           <div className="grid gap-4">
@@ -500,7 +545,7 @@ function Home() {
       </Section>
 
       {/* FAQ */}
-      <Section id="faq" className="py-20">
+      <Section id="faq" className="bg-pns-mist py-20">
         <div className="section-shell max-w-3xl">
           <Eyebrow>FAQ</Eyebrow>
           <h2 className="font-display text-3xl font-bold md:text-4xl">Questions people often ask</h2>
@@ -572,7 +617,7 @@ function App({ path = "/" }) {
               <strong className="text-pns-ink">Pragma Novus Systems (Pty) Ltd</strong> · Reg. 2026/496918/07
             </span>
           </div>
-          <p>© {new Date().getFullYear()} Pragma Novus Systems. Ascend and NextStep are services of PNS.</p>
+          <p>© {new Date().getFullYear()} Pragma Novus Systems. Ascend and NextStep are systems developed by PNS.</p>
         </div>
         <nav className="section-shell mt-5 flex flex-wrap gap-x-6 gap-y-2 border-t border-pns-lilac/60 pt-5 font-semibold" aria-label="Legal">
           {legalLinks.map(([label, href]) => (
