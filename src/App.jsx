@@ -5,8 +5,9 @@ import { legalLinks } from "./Legal";
 import { ArrowRight, BadgeCheck, Check, Clock, CreditCard, Download, GraduationCap, HeartHandshake, Lock, Mail, MapPin, Menu, Phone, Plus, School, Sprout, Users, X } from "lucide-react";
 
 const email = "frontdesk@pragmansystems.co.za";
-const phoneDisplay = "+27 67 033 6452";
-const phoneHref = "tel:+27670336452";
+const phoneDisplay = "+27 68 102 5631";
+const phoneNote = "Calls and WhatsApp";
+const phoneHref = "tel:+27681025631";
 const mailHref = `mailto:${email}?subject=${encodeURIComponent("Enquiry from the PNS website")}`;
 const ascendUrl = "https://ascendhtcenter.pragmansystems.co.za/";
 // ?from= is Ascend's lead tracking: it remembers which page sent a person to sign up.
@@ -142,7 +143,7 @@ const doorPages = {
     offers: [
       ["See where my child is stuck", "A learning check shows which skills are holding your child back, before you spend money trying to fix them. It starts with maths, and you keep the results whatever you decide next. It's an academic check, not a psychological assessment. We arrange these by hand for now, so tell us your child's grade, curriculum and subject.", "Request a learning check", ask("Learning check request"), "We'll confirm what's available for your child's grade and subject."],
       ["Get tutoring", "One-on-one lessons with an educator, live online, at your home where an educator is nearby, or a mix of both. Register once, add your children and choose what suits them.", "Register for tutoring", ascend("/register?org=precinct&mode=online", "pns-parents"), "Our front desk confirms the programme, start date and fee in writing."],
-      ["Find a centre", "Supervised homework help and tutoring at a centre near you, starting with the Ascend Homework & Tutoring Center at The Precinct in Waterfall.", "See the centre", ascend("/precinct", "pns-parents"), null]
+      ["Find a centre", "Supervised homework help and tutoring at a centre near you, starting with the Ascend Homework & Tutoring Center in Midrand.", "See the centre", ascend("/precinct", "pns-parents"), null]
     ],
     stepsTitle: "What you see once you're in",
     steps: [
@@ -284,9 +285,9 @@ function Contact() {
             </select>
             <a href={ask(reason)} className="mt-1 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-pns-gold px-5 font-bold text-pns-deep transition hover:bg-white"><Mail size={18} /> Email us about this</a>
           </div>
-          <a href={phoneHref} className="flex min-h-14 items-center gap-4 rounded-2xl bg-white px-5 font-bold text-pns-ink transition hover:-translate-y-0.5"><Phone size={20} className="text-pns-violet" /> {phoneDisplay}</a>
+          <a href={phoneHref} className="flex min-h-14 items-center gap-4 rounded-2xl bg-white px-5 font-bold text-pns-ink transition hover:-translate-y-0.5"><Phone size={20} className="text-pns-violet" /> <span className="flex flex-col leading-tight">{phoneDisplay}<span className="text-xs font-semibold text-pns-ink/60">{phoneNote}</span></span></a>
           <a href={mailHref} className="flex min-h-14 items-center gap-4 rounded-2xl bg-white/10 px-5 font-bold transition hover:bg-white/15"><Mail size={20} className="shrink-0" /> <span className="break-all">{email}</span></a>
-          <div className="flex items-start gap-4 rounded-2xl bg-white/10 px-5 py-4 font-semibold"><MapPin size={20} className="mt-0.5 shrink-0" /> 1 Mushroom Road, Waterfall, The Precinct, 1686</div>
+          <div className="flex items-start gap-4 rounded-2xl bg-white/10 px-5 py-4 font-semibold"><MapPin size={20} className="mt-0.5 shrink-0" /> Midrand, Gauteng, 1686</div>
         </div>
       </div>
     </Section>
@@ -489,7 +490,7 @@ function Home() {
               Pragma Novus Systems (PNS) is a South African company that develops systems. We look for problems that are poorly served and build something practical to solve them, with real people behind it.
             </p>
             <p className="mt-4 leading-8 text-pns-ink/75">
-              Most of our work today is educational support intelligence. There, our approach is set out in the PNS Educational Support Quality Management System (PNS-ESQMS): start with a baseline, teach to the gaps, test in cycles, retest, and report honestly. Ascend is the platform that delivers it. Beyond education, NextStep helps young people find genuine work, and we'll keep developing new systems. We're based at The Precinct in Waterfall. "Pragma" stands for practical action; "Novus" means new.
+              Most of our work today is educational support intelligence. There, our approach is set out in the PNS Educational Support Quality Management System (PNS-ESQMS): start with a baseline, teach to the gaps, test in cycles, retest, and report honestly. Ascend is the platform that delivers it. Beyond education, NextStep helps young people find genuine work, and we'll keep developing new systems. We're based in Midrand, Gauteng. "Pragma" stands for practical action; "Novus" means new.
             </p>
           </div>
           <div className="grid gap-4">

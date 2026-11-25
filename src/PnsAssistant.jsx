@@ -56,7 +56,7 @@ export default function PnsAssistant() {
       setMessages((current) => [...current, { role: "assistant", content: data.reply }]);
     } catch (caughtError) {
       console.error("PNS Assistant request failed", caughtError);
-      setError("The assistant isn't available right now. Please call +27 67 033 6452 or email frontdesk@pragmansystems.co.za.");
+      setError("The assistant isn't available right now. Please call or WhatsApp +27 68 102 5631, or email frontdesk@pragmansystems.co.za.");
     } finally {
       setIsLoading(false);
       requestAnimationFrame(() => inputRef.current?.focus());

@@ -1,8 +1,8 @@
 import { ArrowLeft } from "lucide-react";
 
 const email = "frontdesk@pragmansystems.co.za";
-const phoneDisplay = "+27 67 033 6452";
-const address = "1 Mushroom Road, Waterfall, The Precinct, 1686, Gauteng, South Africa";
+const phoneDisplay = "+27 68 102 5631 (calls and WhatsApp)";
+const address = "Midrand, Gauteng, 1686, South Africa";
 const updated = "2 November 2026";
 
 export const legalLinks = [
@@ -55,7 +55,7 @@ function Terms() {
         ["Registration number", "2026/496918/07"],
         ["Physical address", address],
         ["Email", <Mail />],
-        ["Telephone / WhatsApp", phoneDisplay],
+        ["Calls and WhatsApp", phoneDisplay.replace(" (calls and WhatsApp)", "")],
         ["Website", "www.pragmansystems.co.za"]
       ]} />
 
@@ -63,7 +63,7 @@ function Terms() {
       <H3>2.1 Ascend Homework &amp; Tutoring Center</H3>
       <P>Ascend provides homework assistance, one-on-one tutoring and exam preparation for learners in Grade R to Grade 12. Parents get an online portal showing attendance, homework, marks, bookings, invoices and tutor reports. Ascend is delivered in four ways:</P>
       <UL items={[
-        <><strong>At the centre:</strong> in person at the Precinct Lifestyle Hub in Waterfall, Monday to Thursday after school.</>,
+        <><strong>At the centre:</strong> in person at our centre in Midrand, Monday to Thursday after school.</>,
         <><strong>Online:</strong> live one-on-one lessons from home, anywhere in South Africa.</>,
         <><strong>In-home private tutoring:</strong> a vetted Ascend tutor comes to your home. This depends on a tutor being available near your area; we confirm availability with you before any in-home session goes ahead.</>,
         <><strong>Hybrid:</strong> you choose online or in-home for each session.</>
@@ -310,7 +310,7 @@ function Delivery() {
 
       <H2>2. Ascend Homework &amp; Tutoring Center</H2>
       <Table head={["Option", "How it's delivered"]} rows={[
-        ["At the centre", "In person at the Precinct Lifestyle Hub, 1 Mushroom Road, Waterfall, 1686. Homework Assistance runs Monday to Thursday, 15:00–18:00. Tutoring is 3 hours a week (2 × 1.5 hours or 1 × 3 hours) at times agreed with you."],
+        ["At the centre", "In person at our centre in Midrand, Gauteng. Homework Assistance runs Monday to Thursday, 15:00–18:00. Tutoring is 3 hours a week (2 × 1.5 hours or 1 × 3 hours) at times agreed with you."],
         ["Online", "Live one-on-one lessons in the Ascend online classroom, or through a meeting link we email you when the session is confirmed. Available anywhere in South Africa."],
         ["In-home", "A vetted Ascend tutor comes to your home at the confirmed time. Available where we have a tutor near your area; when you sign up we tell you whether one is available before any in-home session goes ahead."],
         ["Hybrid", "You choose online or in-home for each session you book."]
