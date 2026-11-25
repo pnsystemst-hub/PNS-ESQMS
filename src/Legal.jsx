@@ -61,7 +61,7 @@ function Terms() {
 
       <H2>2. Our Services</H2>
       <H3>2.1 Ascend Homework &amp; Tutoring Center</H3>
-      <P>Ascend provides homework assistance, one-on-one tutoring and exam preparation for learners in Grades 1 to 12. Parents get an online portal showing attendance, homework, marks, bookings, invoices and tutor reports. Ascend is delivered in four ways:</P>
+      <P>Ascend provides homework assistance, one-on-one tutoring and exam preparation for learners in Grade R to Grade 12. Parents get an online portal showing attendance, homework, marks, bookings, invoices and tutor reports. Ascend is delivered in four ways:</P>
       <UL items={[
         <><strong>At the centre:</strong> in person at the Precinct Lifestyle Hub in Waterfall, Monday to Thursday after school.</>,
         <><strong>Online:</strong> live one-on-one lessons from home, anywhere in South Africa.</>,
@@ -192,7 +192,7 @@ function Privacy() {
       ]} />
       <P>Some service providers may store information outside South Africa. When that happens, we make sure they provide protection comparable to POPIA.</P>
       <H3>Tutors and businesses using the Ascend platform</H3>
-      <P>When an independent tutor or tutoring business uses the Ascend platform for its own clients, that tutor or business decides what information it collects about its families and why, and is responsible for it under POPIA. PNS stores and processes that information on their behalf, keeps each business's information separate, and doesn't use it for our own purposes.</P>
+      <P>When an independent tutor or tutoring business uses the Ascend platform for its own clients, that tutor or business decides what information it collects about its families and why, and is responsible for it under POPIA. PNS stores and processes that information on their behalf, keeps each business's information separate, and doesn't use it for our own purposes. Each business or organisation accepts Ascend's data processing agreement when it registers, and everyone who signs up to Ascend accepts Ascend's own privacy notice, which sets out in full how learner information is handled there.</P>
 
       <H2>5. How we protect your information</H2>
       <P>We use encrypted connections (HTTPS), access controls, secure authentication and reputable hosting providers. Only authorised people can access personal information, and only when they need it for their work. No online system is completely secure, but we will notify you and the Information Regulator if a security breach affects your personal information.</P>

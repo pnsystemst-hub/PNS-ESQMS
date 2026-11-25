@@ -41,7 +41,7 @@ const navItems = [
   ["Our systems", "/#systems"],
   ["Ascend", "/#ascend"],
   ["Parents", "/parents"],
-  ["Tutors & businesses", "/tutors"],
+  ["Educators & businesses", "/tutors"],
   ["Schools & organisations", "/organisations"],
   ["About", "/#about"]
 ];
@@ -59,7 +59,7 @@ const systems = [
     icon: GraduationCap,
     name: "Ascend",
     line: "Educational support intelligence",
-    body: "Our largest area of work. Ascend connects assessment, targeted support, teaching, progress and everyday administration for families, tutors, schools and communities.",
+    body: "Our largest area of work. Ascend follows each learner's mistakes to the skill underneath, then connects assessment, teaching, catch-up work, attendance, communication and reporting for families, educators, schools and programmes.",
     href: "#ascend",
     cta: "About Ascend",
     band: "from-pns-ink via-pns-plum to-pns-violet",
@@ -81,7 +81,7 @@ const systems = [
 // The three ways into Ascend. Same order and same words on the Ascend home page.
 const doors = [
   [Users, "Parents", "See where your child is stuck, get them the right help, and follow whether it's working.", "/parents", "For parents", "bg-pns-ink text-white", "bg-pns-violet"],
-  [GraduationCap, "Tutors & tutoring businesses", "Bring your own learners and run lessons, homework, progress and billing in one workspace.", "/tutors", "For tutors and businesses", "bg-pns-plum text-white", "bg-pns-plum"],
+  [GraduationCap, "Educators & tutoring businesses", "Bring your own learners and run lessons, homework, progress and billing in one workspace.", "/tutors", "For educators and businesses", "bg-pns-plum text-white", "bg-pns-plum"],
   [School, "Schools, estates & organisations", "Set up a structured, measurable support programme for your learners or community.", "/organisations", "For organisations", "bg-pns-gold text-pns-deep", "bg-pns-gold"]
 ];
 
@@ -90,25 +90,45 @@ const cycle = [
   ["Plan", "Decide what to work on first, instead of repeating whole topics."],
   ["Teach", "Live online or in person, with homework and practice that fit."],
   ["Retest", "Test again to see whether the gap has actually closed."],
-  ["Report", "Results in plain words for parents, tutors and organisers."]
+  ["Report", "Results in plain words for parents, educators and organisers."]
 ];
 
+// Only what the live platform does today, grouped the way people use it.
 const ascendCan = [
-  "Curriculum map for CAPS, IEB and Cambridge, broken into topics and subtopics",
-  "Tests marked topic by topic, with practice papers that mark themselves",
-  "Live classroom with video, whiteboard and documents on the board",
-  "Timetables, registers and bookings for in-person lessons",
-  "Homework, messages and weekly summaries for families",
-  "Separate, private spaces for each centre, business and tutor"
+  ["Find the gaps", [
+    "A curriculum map for CAPS, IEB and Cambridge, from topics down to individual skills",
+    "Strongest in the numbers subjects: Mathematics from Grade R to Grade 12, the sciences and Accounting",
+    "An assessment room for tests and diagnostics, which notes when a learner leaves the page",
+    "Printed question papers with an answer sheet that has a box for every mark, and a memo kept protected",
+    "Marking that records evidence skill by skill and traces a gap back to earlier grades"
+  ]],
+  ["Close them", [
+    "Catch-up practice drafted automatically from each marked script",
+    "Practice papers that mark themselves, with exact feedback",
+    "A live classroom with video, a shared whiteboard, documents and screen sharing, built to work on a phone",
+    "Lessons can be recorded, and homework is set and handed in on the platform"
+  ]],
+  ["Run the programme", [
+    "Class calendars and bookings for online and in-person lessons",
+    "Attendance kept automatically from online lessons, work handed in, scanned learner cards or an uploaded register, and searchable at any time",
+    "Whole class lists imported from Excel or CSV, with learner codes instead of names where a programme needs them",
+    "One person can hold more than one role, such as educator and parent, and switch between them"
+  ]],
+  ["Keep everyone informed", [
+    "Messages with a clear purpose, urgency and reply-by date, voice notes, and alerts by app notification and email",
+    "Short reports after each class, plus progress charts and monthly reports that an educator can approve before families see them",
+    "Video meetings with parents or guests through a link, with no account or download needed",
+    "A separate, private space for each centre, business, educator and programme"
+  ]]
 ];
 
 // Commercial divisions: only what can be used or arranged today.
 const divisions = [
-  ["Educational Intelligence", "Knowing what's really going on.", ["Learning checks, starting with maths", "Topic-by-topic results and learning gaps", "Progress reports in plain words"]],
-  ["Educational Technology", "The Ascend platform.", ["A workspace for independent tutors", "A space for tutoring businesses and centres", "A dashboard for parents and a simple login for learners"]],
+  ["Educational Intelligence", "Knowing what's really going on.", ["Learning checks, starting with maths", "Skill-by-skill results that trace gaps to earlier grades", "Progress charts and monthly reports in plain words", "Analytics across a class, grade or programme"]],
+  ["Educational Technology", "The Ascend platform.", ["A workspace for independent educators", "A space for tutoring businesses, centres and school programmes", "A dashboard for parents and a simple login for learners", "Calendars, automatic attendance and communication in one place"]],
   ["Educational Services", "Teaching, delivered by us.", ["One-on-one tutoring, in person and online", "Supervised homework assistance", "Exam preparation"]],
   ["Educational Infrastructure", "Programmes for your community.", ["Support programmes for schools", "Homework and tutoring centres for estates", "Community education programmes"]],
-  ["Educational Resources", "The curriculum, made usable.", ["Curriculum map for CAPS, IEB and Cambridge", "Practice papers with memos", "Targeted practice for individual learners"]],
+  ["Educational Resources", "The curriculum, made usable.", ["Curriculum map for CAPS, IEB and Cambridge", "Question papers, answer sheets and memos, strongest in maths, the sciences and Accounting", "Catch-up practice for individual learners"]],
   ["Educational Quality Management", "How we keep support accountable.", ["The PNS-ESQMS framework", "Baselines, assessment cycles and retests", "Reporting standards for support programmes"]]
 ];
 
@@ -121,43 +141,44 @@ const doorPages = {
     intro: "Use only what you need. A learning check doesn't commit you to tutoring, and everything your child does shows up in one simple dashboard.",
     offers: [
       ["See where my child is stuck", "A learning check shows which skills are holding your child back, before you spend money trying to fix them. It starts with maths, and you keep the results whatever you decide next. It's an academic check, not a psychological assessment. We arrange these by hand for now, so tell us your child's grade, curriculum and subject.", "Request a learning check", ask("Learning check request"), "We'll confirm what's available for your child's grade and subject."],
-      ["Get tutoring", "One-on-one lessons with a tutor, live online, at your home where a tutor is nearby, or a mix of both. Register once, add your children and choose what suits them.", "Register for tutoring", ascend("/register?org=precinct&mode=online", "pns-parents"), "Our front desk confirms the programme, start date and fee in writing."],
+      ["Get tutoring", "One-on-one lessons with an educator, live online, at your home where an educator is nearby, or a mix of both. Register once, add your children and choose what suits them.", "Register for tutoring", ascend("/register?org=precinct&mode=online", "pns-parents"), "Our front desk confirms the programme, start date and fee in writing."],
       ["Find a centre", "Supervised homework help and tutoring at a centre near you, starting with the Ascend Homework & Tutoring Center at The Precinct in Waterfall.", "See the centre", ascend("/precinct", "pns-parents"), null]
     ],
     stepsTitle: "What you see once you're in",
     steps: [
-      ["One dashboard", "Each child's lessons, attendance, homework and marks in one place."],
+      ["One dashboard", "Each child's lessons, attendance, homework and marks in one place, with charts that show the trend."],
       ["Topics, not just marks", "Results by subject, term and topic, in plain words."],
       ["Join from your phone", "Your child joins live lessons from your account, or with their own username and PIN."],
-      ["Stay in touch", "Message the tutor and get a short summary of your child's week."]
+      ["Stay in touch", "Message the educator, get a short report after each class, and a monthly report on progress."]
     ],
     pricing: true,
     faqs: [
-      ["Which curricula do you support?", "Ascend's curriculum map covers CAPS, IEB and Cambridge. Practice questions are written against CAPS and linked to matching IEB and Cambridge topics. Tell us your child's curriculum and we'll be clear about what's available."],
+      ["Which curricula do you support?", "Ascend's curriculum map covers CAPS, IEB and Cambridge, kept in step so a skill in one links to the same skill in the others. Tell us your child's curriculum and we'll be clear about what's available."],
       ["We homeschool. Can Ascend help?", "It can be useful, for tutoring, learning checks and following progress. Talk to us about your curriculum and what you need, and we'll tell you honestly what fits."],
-      ["Which grades do you support?", "Our centre and tutoring programmes support Grade R to Grade 12. Self-marking practice currently covers Grades 4 to 12."]
+      ["Which grades and subjects do you support?", "Our centre and tutoring programmes support Grade R to Grade 12. Ascend's practice and assessments are strongest in the numbers subjects: Mathematics from Grade R to Grade 12, the sciences and Accounting. Ask us about other subjects and we'll tell you honestly what's ready."]
     ]
   },
   "/tutors": {
-    title: "For tutors and tutoring businesses",
-    eyebrow: "Ascend · For tutors & tutoring businesses",
+    title: "For educators and tutoring businesses",
+    eyebrow: "Ascend · For educators & tutoring businesses",
     h1: "Spend less time on admin and more time teaching.",
     intro: "If you're running your work on WhatsApp, Zoom, spreadsheets and Word documents, Ascend puts it in one place. Your learners and your business stay yours.",
     offers: [
-      ["I'm a private tutor", "Your own space on Ascend for your own clients: lessons, homework, progress and billing. Teach in the live classroom, or keep using Zoom, Google Meet or WhatsApp.", "Run my learners on Ascend", ascend("/register?as=private_tutor", "pns-tutors"), "You're set up straight away. Any platform fee is shown on the form before you accept."],
-      ["I run a tutoring business", "Your name, logo and colour. Your programmes and fees. Your parents, learners and tutors, and nobody outside your business can see them.", "Register my business", ascend("/register?as=business", "pns-tutors"), "Any platform fee is shown on the form before you accept."],
+      ["I'm a private educator", "Your own space on Ascend for your own clients: lessons, homework, progress and billing. Teach in the live classroom, or keep using Zoom, Google Meet or WhatsApp.", "Run my learners on Ascend", ascend("/register?as=private_tutor", "pns-tutors"), "You're set up straight away. Any platform fee is shown on the form before you accept."],
+      ["I run a tutoring business", "Your name, logo and colour. Your programmes and fees. Your parents, learners and educators, and nobody outside your business can see them.", "Register my business", ascend("/register?as=business", "pns-tutors"), "Any platform fee is shown on the form before you accept."],
       ["I want to teach for Ascend", "Join our team and teach our families online, in their homes or at a centre. We check every application before setting you up.", "Apply to teach", ascend("/register?as=ascend_tutor", "pns-tutors"), "Applying doesn't guarantee placement or a set number of learners."]
     ],
     stepsTitle: "What's in the workspace",
     steps: [
-      ["Teach", "Live classroom with video, whiteboard and documents, plus registers for in-person lessons."],
-      ["Assess", "Practice papers that mark themselves, and tests marked topic by topic."],
-      ["Follow progress", "A learning map for CAPS, IEB and Cambridge that shows each learner's gaps."],
-      ["Run the business", "Parents' dashboards, messages, invoices and receipts."]
+      ["Teach", "A live classroom with video, whiteboard, documents and screen sharing, plus calendars for in-person lessons."],
+      ["Assess", "An assessment room, printed papers with answer sheets and memos, and marking that shows each learner's gaps skill by skill."],
+      ["Follow up", "Catch-up practice drafted from each marked script, short after-class reports and monthly reports you approve."],
+      ["Run the business", "Automatic attendance, bookings, parents' dashboards, messages, invoices and receipts."]
     ],
     faqs: [
       ["Will I get new clients by signing up?", "No, and we won't promise that. Ascend is a workspace for the learners you already teach. Your families sign up through your own link."],
-      ["Do I have to stop using Zoom or WhatsApp?", "No. Teach in Ascend's classroom, or keep your current tools and record the lesson in Ascend."]
+      ["Do I have to stop using Zoom or WhatsApp?", "No. Teach in Ascend's classroom, or keep your current tools and record the lesson in Ascend."],
+      ["Who is responsible for my learners' information?", "You are, for the families you bring. When you register a business, you sign Ascend's data processing agreement: you're the responsible party under POPIA, and PNS stores and processes the information on your behalf, kept separate from everyone else's."]
     ]
   },
   "/organisations": {
@@ -166,7 +187,7 @@ const doorPages = {
     h1: "A structured, measurable support programme, without building it yourself.",
     intro: "We bring the platform and the framework. You keep your learners, your teaching and your governance. Every programme is scoped and quoted with you, so there is nothing to buy online.",
     offers: [
-      ["Schools", "Supplementary support that complements your teaching: assess a grade or subject, see the gaps topic by topic, support the learners who need it, and retest to see what worked.", "Discuss a school programme", ask("School programme enquiry"), "We suggest starting small: one subject and one grade."],
+      ["Schools", "Supplementary support that complements your teaching: assess a grade or subject, see the gaps skill by skill, support the learners who need it, and retest to see what worked. Programmes can run on paper, with printed answer sheets, class lists from Excel and learner codes instead of names.", "Discuss a school programme", ask("School programme enquiry"), "We suggest starting small: one subject and one grade."],
       ["Estates & residential communities", "A homework and tutoring centre as an amenity for residents, with registration, attendance, teaching and parent reporting running on Ascend.", "Discuss a centre for our estate", ask("Educational support centre enquiry"), null],
       ["NGOs, community & private education", "Structured educational support for a community or private facility, with the reporting a board or sponsor will ask for.", "Discuss a partnership", ask("Partnership enquiry"), null]
     ],
@@ -174,12 +195,12 @@ const doorPages = {
     steps: [
       ["Talk", "You tell us who the programme is for and what you want to change."],
       ["Scope", "We agree the subjects, grades, learners and measures, and quote in writing."],
-      ["Set up", "Your own private space on Ascend, with tutor onboarding and learner registration."],
-      ["Run and measure", "Baseline, teaching, assessment cycles, retests and regular reports."]
+      ["Set up", "Your own private space on Ascend, registered for your grades and subjects, with educator onboarding and class lists imported in one file."],
+      ["Run and measure", "Baseline, teaching, assessment cycles, retests, automatic attendance, and charts and reports across classes and grades."]
     ],
     faqs: [
-      ["Who sees our learners' information?", "Each organisation has its own private space. Learner records are visible only to their parents, their tutors and that organisation's organisers. We agree how personal information is handled in writing, in line with POPIA, before a programme starts."],
-      ["Do you supply the tutors?", "Either way can work. You can use your own educators on Ascend, or talk to us about providing teaching as part of the programme."]
+      ["Who sees our learners' information?", "Each organisation has its own private space. Learner records are visible only to their parents, their educators and that organisation's organisers, and a programme can use learner codes instead of names. Before a programme starts, the organisation signs Ascend's data processing agreement, which sets out its responsibilities as the responsible party under POPIA and ours as the operator."],
+      ["Do you supply the educators?", "Either way can work. You can use your own teachers on Ascend, or talk to us about providing educators as part of the programme."]
     ]
   }
 };
@@ -187,7 +208,7 @@ const doorPages = {
 const contactReasons = [
   "A learning check for my child",
   "Tutoring for my child",
-  "Using Ascend as a tutor",
+  "Using Ascend as an educator",
   "Using Ascend for my tutoring business",
   "A demonstration for my school or organisation",
   "A support centre for my estate or community",
@@ -208,7 +229,7 @@ const plans = [
     name: "Homework Assistance",
     price: "R750",
     per: "/ month",
-    features: ["Monday to Thursday, 15:00–18:00", "Supervised, with help when stuck", "Homework checked before home time", "Parent portal and tutor reports"],
+    features: ["Monday to Thursday, 15:00–18:00", "Supervised, with help when stuck", "Homework checked before home time", "Parent portal and educator reports"],
     href: ascend("/register?org=precinct", "pns-parents"),
     cta: "Enrol now"
   },
@@ -217,7 +238,7 @@ const plans = [
     name: "One-on-one Tutoring",
     price: "R1,250",
     per: "/ month",
-    features: ["A dedicated private tutor", "3 hours a week (2 × 1.5 h or 1 × 3 h)", "Focus on the subjects that need it most", "In person or live online"],
+    features: ["A dedicated private educator", "3 hours a week (2 × 1.5 h or 1 × 3 h)", "Focus on the subjects that need it most", "In person or live online"],
     href: ascend("/register?org=precinct", "pns-parents"),
     cta: "Enrol now"
   },
@@ -226,7 +247,7 @@ const plans = [
     name: "Homework & Tutoring",
     price: "R1,500",
     per: "/ month",
-    features: ["Daily homework sessions plus a private tutor", "Homework turned into one-on-one lessons", "R500 a month less than both separately", "Full parent portal access"],
+    features: ["Daily homework sessions plus a private educator", "Homework turned into one-on-one lessons", "R500 a month less than both separately", "Full parent portal access"],
     href: ascend("/register?org=precinct", "pns-parents"),
     cta: "Enrol now",
     featured: "Most complete"
@@ -239,9 +260,9 @@ const faqs = [
   ["Can I cancel?", "Yes. NextStep can be cancelled at any time and won't renew the next month. Ascend enrolments can be cancelled with written notice by email or WhatsApp. If you change your mind within 7 days of buying online, you get a full refund. See our Refund & Cancellation Policy for the details."],
   ["Does NextStep guarantee me a job?", "No honest service can. NextStep finds and ranks genuine opportunities, flags risky ones and helps you send stronger applications, but employers make the hiring decisions. We focus on improving your chances and saving you time."],
   ["Is PNS only about education?", "No. PNS develops systems. Educational support intelligence is our largest focus, through Ascend, but NextStep helps young people find work, and we'll keep developing new systems."],
-  ["What's the difference between PNS and Ascend?", "Pragma Novus Systems is the company. Ascend is the education platform we built. We use it to run our own tutoring and homework programmes, and other tutors, businesses and organisations can use it to run theirs."],
-  ["Do I have to buy tutoring to use Ascend?", "No. Tutors and businesses can use Ascend with their own learners, and a learning check doesn't commit a family to tutoring."],
-  ["Is my personal information safe?", "Yes. We collect only what we need to deliver your service, store it with reputable providers, protect it with access controls and encryption, and never sell it. Our Privacy Policy explains your rights under POPIA."]
+  ["What's the difference between PNS and Ascend?", "Pragma Novus Systems is the company. Ascend is the education platform we built. We use it to run our own tutoring and homework programmes, and other educators, businesses and organisations can use it to run theirs."],
+  ["Do I have to buy tutoring to use Ascend?", "No. Educators, tutoring businesses and school programmes can use Ascend with their own learners, and a learning check doesn't commit a family to tutoring."],
+  ["Is my personal information safe?", "Yes. We collect only what we need to deliver your service, store it with reputable providers, protect it with access controls and encryption, and never sell it. Everyone using Ascend accepts its POPIA privacy notice when they sign up, and organisations sign a data processing agreement. Our Privacy Policy explains your rights under POPIA."]
 ];
 
 function Doors() {
@@ -468,7 +489,7 @@ function Home() {
         <div className="section-shell">
           <Eyebrow>Ascend · Where learning becomes measurable</Eyebrow>
           <h2 className="max-w-3xl font-display text-3xl font-bold leading-tight md:text-4xl">From more teaching to intelligent intervention.</h2>
-          <p className="mt-4 max-w-3xl text-lg leading-8 text-pns-ink/75">Ascend is more than an online classroom. It connects assessment, targeted support, teaching, progress and everyday administration, so everyone works from the same picture of each learner.</p>
+          <p className="mt-4 max-w-3xl text-lg leading-8 text-pns-ink/75">Most learners aren't behind on everything. They're missing a step, often from a grade or two back. Ascend follows each mistake to the skill underneath, so the next lesson starts in the right place, and the family, the educator and the programme all work from the same record of each learner.</p>
           <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {cycle.map(([title, body], i) => (
               <li key={title} className="rounded-2xl bg-white p-5 shadow-soft">
@@ -478,9 +499,16 @@ function Home() {
               </li>
             ))}
           </ol>
-          <ul className="mt-8 grid gap-3 md:grid-cols-2">
-            {ascendCan.map((c) => <li key={c} className="flex items-start gap-3 leading-7"><Check size={18} className="mt-1 shrink-0 text-pns-emerald" />{c}</li>)}
-          </ul>
+          <div className="mt-10 grid gap-5 md:grid-cols-2">
+            {ascendCan.map(([group, items]) => (
+              <div key={group} className="rounded-2xl bg-white p-6 shadow-soft">
+                <h3 className="font-display text-lg font-bold">{group}</h3>
+                <ul className="mt-3 grid gap-2.5">
+                  {items.map((c) => <li key={c} className="flex items-start gap-3 text-sm leading-6"><Check size={17} className="mt-0.5 shrink-0 text-pns-emerald" />{c}</li>)}
+                </ul>
+              </div>
+            ))}
+          </div>
           <a href={ascend("/", "pns-home")} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-full bg-pns-ink px-6 font-bold text-white transition hover:bg-pns-plum">Visit Ascend <ArrowRight size={18} /></a>
         </div>
       </Section>
