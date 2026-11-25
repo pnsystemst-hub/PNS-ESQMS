@@ -1,6 +1,9 @@
 const OPENAI_API_URL = "https://api.openai.com/v1/chat/completions";
 const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4o-mini";
+const ASCEND_ASSISTANT_URL = process.env.ASCEND_ASSISTANT_URL || "https://ascendhtcenter.pragmansystems.co.za/api/pns-assistant";
 
+// The Ascend platform keeps a copy of these instructions (worker/routes/pnsAssistant.ts) for answering without an
+// OpenAI key: when one changes, change the other.
 const systemPrompt = `You are PNS Assistant, the friendly website assistant for Pragma Novus Systems (PNS).
 
 Facts you can share:
@@ -56,12 +59,6 @@ export default async function handler(request, response) {
     .trim()
     .replace(/^OPENAI_API_KEY=/, "")
     .replace(/^['"]|['"]$/g, "");
-  if (!apiKey) {
-    return sendJson(response, 500, {
-      error: "PNS Assistant is not configured yet. Please add OPENAI_API_KEY in the Vercel environment variables."
-    });
-  }
-
   let requestBody = request.body || {};
   if (typeof requestBody === "string") {
     try {
@@ -76,6 +73,30 @@ export default async function handler(request, response) {
 
   if (!latestUserMessage) {
     return sendJson(response, 400, { error: "Please send a question for PNS Assistant." });
+  }
+
+  // Without an OpenAI key, PNS Assistant is answered by Cloudflare's AI through the Ascend platform (free within its
+  // daily allowance), with the same facts and instructions. Adding OPENAI_API_KEY in Vercel switches back to OpenAI.
+  if (!apiKey) {
+    try {
+      const forwarded = await fetch(ASCEND_ASSISTANT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages }),
+        signal: AbortSignal.timeout(25000)
+      });
+      const payload = await forwarded.json().catch(() => ({}));
+      if (forwarded.ok && payload.reply) return sendJson(response, 200, { reply: payload.reply });
+      console.error("PNS Assistant via Ascend", forwarded.status, payload.error);
+      return sendJson(response, forwarded.status === 400 ? 400 : 502, {
+        error: payload.error || "PNS Assistant is temporarily unavailable. Please try again later or contact PNS directly."
+      });
+    } catch (error) {
+      console.error("PNS Assistant via Ascend failed", error);
+      return sendJson(response, 502, {
+        error: "PNS Assistant is temporarily unavailable. Please try again later or contact PNS directly."
+      });
+    }
   }
 
   try {
