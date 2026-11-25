@@ -86,7 +86,7 @@ function Terms() {
       <H2>4. Prices and payment</H2>
       <UL items={[
         <>All prices are in <strong>South African Rand (ZAR)</strong> and include VAT where applicable.</>,
-        <>Current prices: <strong>NextStep</strong> R5 per month. <strong>Ascend Homework Assistance</strong> R750 per month. <strong>Ascend One-on-one Tutoring</strong> R1,250 per month. <strong>Ascend Homework &amp; Tutoring</strong> R1,500 per month. <strong>Ascend Exam Prep</strong> R300 per week. Individually booked online and in-home sessions are charged at the rate confirmed with you before you pay. Your Ascend fee is confirmed in writing before you pay.</>,
+        <>Current prices: <strong>NextStep</strong> R5 per month. <strong>Ascend</strong> fees depend on the programme and how it is delivered, and your Ascend fee is confirmed with you in writing before you pay.</>,
         <>There is <strong>no registration fee</strong> for Ascend. Any sibling discount or other discount is shown on your invoice.</>,
         <>You can pay <strong>online by card</strong>, <strong>by EFT</strong> (and upload your proof of payment in your portal) or <strong>in person</strong> at the Ascend front desk. Card payments are processed by <strong>Payfast</strong>, a third-party payment gateway. Payfast's own terms and security standards apply to the payment. PNS does not receive or store your full card details.</>,
         "NextStep subscriptions are billed monthly in advance and renew automatically until cancelled. Ascend fees are payable monthly (or weekly for Exam Prep) in advance for the period booked, unless agreed otherwise in writing.",

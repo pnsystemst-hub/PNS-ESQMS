@@ -151,10 +151,10 @@ const doorPages = {
       ["Join from your phone", "Your child joins live lessons from your account, or with their own username and PIN."],
       ["Stay in touch", "Message the educator, get a short report after each class, and a monthly report on progress."]
     ],
-    pricing: true,
     faqs: [
       ["Which curricula do you support?", "Ascend's curriculum map covers CAPS, IEB and Cambridge, kept in step so a skill in one links to the same skill in the others. Tell us your child's curriculum and we'll be clear about what's available."],
       ["We homeschool. Can Ascend help?", "It can be useful, for tutoring, learning checks and following progress. Talk to us about your curriculum and what you need, and we'll tell you honestly what fits."],
+      ["How much does it cost?", "Fees depend on the programme and how your child learns (at a centre, online, at home or a mix). Our front desk confirms the programme, start date and fee with you in writing before you pay anything, and there is no registration fee."],
       ["Which grades and subjects do you support?", "Our centre and tutoring programmes support Grade R to Grade 12. Ascend's practice and assessments are strongest in the numbers subjects: Mathematics from Grade R to Grade 12, the sciences and Accounting. Ask us about other subjects and we'll tell you honestly what's ready."]
     ]
   },
@@ -221,37 +221,6 @@ const values = [
   ["Honest", "No inflated promises. We show you the progress, and we're clear about what's next."],
   ["Personal", "Behind every tool is a real person ready to help. Call or email us any time."],
   ["Secure", "Your information is protected, used only to deliver your service and never sold."]
-];
-
-const plans = [
-  {
-    service: "Ascend",
-    name: "Homework Assistance",
-    price: "R750",
-    per: "/ month",
-    features: ["Monday to Thursday, 15:00–18:00", "Supervised, with help when stuck", "Homework checked before home time", "Parent portal and educator reports"],
-    href: ascend("/register?org=precinct", "pns-parents"),
-    cta: "Enrol now"
-  },
-  {
-    service: "Ascend",
-    name: "One-on-one Tutoring",
-    price: "R1,250",
-    per: "/ month",
-    features: ["A dedicated private educator", "3 hours a week (2 × 1.5 h or 1 × 3 h)", "Focus on the subjects that need it most", "In person or live online"],
-    href: ascend("/register?org=precinct", "pns-parents"),
-    cta: "Enrol now"
-  },
-  {
-    service: "Ascend",
-    name: "Homework & Tutoring",
-    price: "R1,500",
-    per: "/ month",
-    features: ["Daily homework sessions plus a private educator", "Homework turned into one-on-one lessons", "R500 a month less than both separately", "Full parent portal access"],
-    href: ascend("/register?org=precinct", "pns-parents"),
-    cta: "Enrol now",
-    featured: "Most complete"
-  }
 ];
 
 const faqs = [
@@ -324,40 +293,6 @@ function Contact() {
   );
 }
 
-function Pricing() {
-  return (
-    <Section id="pricing" className="bg-white py-16">
-      <div className="section-shell">
-        <Eyebrow>Ascend Homework & Tutoring Center</Eyebrow>
-        <h2 className="max-w-2xl font-display text-3xl font-bold leading-tight md:text-4xl">Clear prices in rand. No hidden fees.</h2>
-        <p className="mt-4 max-w-2xl text-lg leading-8 text-pns-ink/75">These are the prices for our own programmes. All prices are in South African Rand (ZAR). You always see the exact amount before you pay, and online payments are processed securely by Payfast.</p>
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-          {plans.map((plan) => (
-            <article key={plan.name} className={`relative flex flex-col rounded-3xl bg-white p-7 shadow-soft ${plan.featured ? "ring-2 ring-pns-gold" : "ring-1 ring-pns-lilac"}`}>
-              {plan.featured && <span className="absolute -top-3 left-6 rounded-full bg-pns-gold px-3 py-1 text-xs font-bold text-pns-deep">{plan.featured}</span>}
-              <h3 className="font-display text-lg font-bold">{plan.name}</h3>
-              <p className="mt-3 font-display text-4xl font-bold">{plan.price}<span className="ml-1 font-sans text-base font-medium text-pns-ink/60">{plan.per}</span></p>
-              <ul className="mt-5 grid flex-1 gap-2.5 text-sm">
-                {plan.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2"><Check size={16} className="mt-0.5 shrink-0 text-pns-emerald" />{f}</li>
-                ))}
-              </ul>
-              <a href={plan.href} target="_blank" rel="noopener noreferrer" className="mt-7 inline-flex items-center justify-center gap-2 rounded-full bg-pns-ink px-5 py-3 font-bold text-white transition hover:bg-pns-plum">
-                {plan.cta} <ArrowRight size={16} />
-              </a>
-            </article>
-          ))}
-        </div>
-        <p className="mt-8 text-sm leading-6 text-pns-ink/65">
-          Exam Prep is also available at R300 per week. Your fee is confirmed in writing before you pay. See our{" "}
-          <a href="/refunds" className="font-semibold text-pns-violet underline">Refund &amp; Cancellation Policy</a> and{" "}
-          <a href="/delivery" className="font-semibold text-pns-violet underline">Service Delivery Policy</a>.
-        </p>
-      </div>
-    </Section>
-  );
-}
-
 function DoorPage({ page }) {
   return (
     <>
@@ -396,8 +331,7 @@ function DoorPage({ page }) {
           </div>
         </div>
       </Section>
-      {page.pricing && <Pricing />}
-      <Section className={page.pricing ? "bg-pns-mist py-16" : "py-16"}>
+      <Section className="py-16">
         <div className="section-shell max-w-3xl">
           <h2 className="font-display text-3xl font-bold">Questions</h2>
           <FaqList items={page.faqs} />
@@ -590,7 +524,7 @@ function App({ path = "/" }) {
 
   useEffect(() => {
     if (page) document.title = `${page.title} | Pragma Novus Systems`;
-    // The page is drawn after the browser looks for #pricing and the like, so go there once it exists.
+    // The page is drawn after the browser looks for #contact and the like, so go there once it exists.
     if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView({ behavior: "instant" });
   }, [page]);
 
